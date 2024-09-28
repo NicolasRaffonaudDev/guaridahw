@@ -1,8 +1,9 @@
 import logo from "../../assets/logo_2-removebg-preview.png"
+import Cart from "../Cart/Cart";
 import CountVotes from "../CountVotes/CountVotes";
 import "./NavBar.css"
 
-function Nav() {
+function Nav({cartCount}) {
     return (
       <div>
         <header>
@@ -29,6 +30,9 @@ function Nav() {
                     </li>
                     <li>
                       <CountVotes/>
+                    </li>
+                    <li className="text-white">
+                      <Cart cartCount={cartCount}/>
                     </li>
                   </ul>
                 </div>
