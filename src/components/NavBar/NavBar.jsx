@@ -3,14 +3,14 @@ import Cart from "../Cart/Cart";
 import CountVotes from "../CountVotes/CountVotes";
 import "./NavBar.css"
 
-function Nav({cartCount}) {
+function Nav({cartCount, title}) {
     return (
       <div>
         <header>
         <nav className="navbar navbar-dark navbar-expand-md bg-dark p-3">
               <div className="container-fluid">
                 <img src={logo} className="logo" alt="logo" />
-                <a className="navbar-brand text-white fw-bold fs-4" href="#">NGR Technical Computer</a>
+                <a className="navbar-brand text-white fw-bold fs-4" href="#">{title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                 </button>

@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <NavBar cartCount={cartCount}/>
+      <NavBar cartCount={cartCount} title="NGR Technical Computer"/>
       <CategoriesList/>
       <Featured />
     </>
