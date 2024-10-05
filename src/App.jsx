@@ -2,6 +2,7 @@ import { useState } from "react"
 import NavBar from "./components/NavBar/NavBar"
 import Featured from "./components/ProductsList/ProductsList"
 import CategoriesList from "./components/CategoriesList/CategoriesList";
+import Carousel from "./components/Carousel/Carousel";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <NavBar cartCount={cartCount} title="NGR Technical Computer"/>
+      <Carousel />
       <CategoriesList/>
       <Featured />
     </>

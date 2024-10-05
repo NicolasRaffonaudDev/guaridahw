@@ -6,7 +6,7 @@ function CountVotes (){
     return (
         <div>
             <button onClick={ () => {setCont(cont + 1)}} className="btn btn-warning">Apoyanos!: {cont} votos</button>
-            <h1 className="text-white">: {cont}</h1>
+            
         </div>
     )
 }
