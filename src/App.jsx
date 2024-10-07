@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar/NavBar"
 import Featured from "./components/ProductsList/ProductsList"
 import CategoriesList from "./components/CategoriesList/CategoriesList";
 import Carousel from "./components/Carousel/Carousel";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Carousel />
       <CategoriesList/>
       <Featured />
+      <ItemListContainer />
     </>
   )
 }

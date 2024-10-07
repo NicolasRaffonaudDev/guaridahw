@@ -3,12 +3,14 @@
 
 const categories = [
   { id:1, name:'processors', img: "../src/assets/procesadores-logo.webp"},
-  { id:2, name:'motherboards', img: "../src/assets/placaMadre-logo.webp"},
-  { id:3, name:'video cards', img: "../src/assets/gpu-logo-1.webp"},
+  { id:2, name:'motherboard', img: "../src/assets/placaMadre-logo.webp"},
+  { id:3, name:'graphics_card', img: "../src/assets/gpu-logo-1.webp"},
   { id:4, name:'memory', img: "../src/assets/ram-logo-1.webp"},
   { id:5, name:'storage', img: "../src/assets/ssd-logo.webp"},
-  { id:6, name:'monitors', img: "../src/assets/monitor-logo.webp"},
-  { id:7, name:'peripherals', img: "../src/assets/Perifericos-logo.png"},
+  { id:6, name:'monitor', img: "../src/assets/monitor-logo.webp"},
+  { id:7, name:'power_supply', img: "../src/assets/Perifericos-logo.png"},
+  { id:8, name:'cooling', img: "../src/assets/Perifericos-logo.png"},
+  { id:9, name:'case', img: "../src/assets/Perifericos-logo.png"},
   ]
 
 function CategoriesList() {
