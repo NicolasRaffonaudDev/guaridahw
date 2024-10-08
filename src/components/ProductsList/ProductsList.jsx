@@ -3,10 +3,10 @@ import Product from "../Product/Product"
 const Featured = () => {
     return (
       <section>
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container-fluid text-center text-white mx-3 my-5 p-4 bg-danger fw-bold">
-            <h1 class="display-4">PRODUCTOS DESTACADOS</h1>
-            <p class="lead">Tenemos algunas opciones Pre-armadas que encajan perfecto con vos!</p>
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container-mdfluid text-center text-white mx-3 my-5 p-4 bg-danger fw-bold">
+            <h1 className="display-md-4">PRODUCTOS DESTACADOS</h1>
+            <p className="lead">Tenemos algunas opciones Pre-armadas que encajan perfecto con vos!</p>
           </div>
         </div>
         

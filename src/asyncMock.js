@@ -1,6 +1,6 @@
 const products = [
-    { id: 1, name: "Intel Core i5-12400", price: 45000, category: "processor", img: "", stock: 120, description: "Procesador Intel Core i5-12400 de 6 núcleos." },
-    { id: 2, name: "NVIDIA GeForce RTX 3060", price: 120000, category: "graphics_card", img: "", stock: 50, description: "Placa de Video NVIDIA GeForce RTX 3060 con 12GB de VRAM." },
+    { id: 1, name: "Intel Core i5-12400", price: 45000, category: "processor", img: "https://pcboost.co.uk/wp-content/uploads/2022/08/1.jpg", stock: 120, description: "Procesador Intel Core i5-12400 de 6 núcleos." },
+    { id: 2, name: "NVIDIA GeForce RTX 3060", price: 120000, category: "graphics_card", img: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6439/6439402cv1d.jpg", stock: 50, description: "Placa de Video NVIDIA GeForce RTX 3060 con 12GB de VRAM." },
     { id: 3, name: "ASUS ROG Strix B550-F", price: 30000, category: "motherboard", img: "", stock: 80, description: "Motherboard ASUS ROG Strix B550-F con soporte para Ryzen." },
     { id: 4, name: "Corsair Vengeance 16GB (2x8GB) 3200MHz", price: 18000, category: "memory", img: "", stock: 200, description: "Memoria RAM Corsair Vengeance de 16GB en kit de 2." },
     { id: 5, name: "Kingston A2000 500GB NVMe", price: 12000, category: "storage", img: "", stock: 150, description: "SSD NVMe Kingston A2000 de 500GB para cargas rápidas." },
