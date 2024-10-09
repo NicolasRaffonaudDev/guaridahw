@@ -24,7 +24,7 @@ const MercadoLibre = () => {
     }
     
     return (
-        <div>
+        <div className="container text-center">
             <h1>MERCADO LIBRE API</h1>
             { itemsMl.length === 0 ? (
             <form onSubmit={handleSubmit}>
@@ -34,13 +34,13 @@ const MercadoLibre = () => {
                 />
                 <button>Search</button>
             </form> ) : ( 
-            <section>
+            <section className="d-flex flex-wrap justify-content-around">
             {itemsMl.map( itemsMl => {
                 return (
-                <article key={itemsMl.id}>
-                    <h2>{itemsMl.title}</h2>
-                    <img src={itemsMl.thumbnail} />
-                    <h3>{itemsMl.price}</h3>
+                <article className="card align-items-center text-center p-3 my-3" style={{width: 400}} key={itemsMl.id}>
+                    <h5 className="fw-bold">{itemsMl.title}</h5>
+                    <img className="card-img-top m-4" style={{width: 100, height:110}} src={itemsMl.thumbnail} />
+                    <h3>$ {itemsMl.price}</h3>
                 </article> )
                 })  
             } </section> 
