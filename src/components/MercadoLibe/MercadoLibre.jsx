@@ -1,7 +1,9 @@
+import { useState } from "react";
 
 const MercadoLibre = () => {
-    /* const [itemsMl, setItemsMl] = useState ([])
-    useEffect(()=>{
+     const [itemsMl, setItemsMl] = useState ([])
+     const [input, setInput] = useState ('')
+    /* useEffect(()=>{
         fetch(`https://api.mercadolibre.com/sites/MLA/search?q=celulares`)
         .then((res)=>{
             return res.json()
@@ -9,8 +11,9 @@ const MercadoLibre = () => {
     })
     .then((articles)=> setItemsMl(articles.results))
     .catch((error) => console.log(error))
-  }, []) */
-    const handleSubmit  = () => {
+  }, []) */ 
+    const handleSubmit  = (event) => {
+        event.preventDefault()
         fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${input}`)
         .then((res)=>{
             return res.json()
@@ -23,7 +26,7 @@ const MercadoLibre = () => {
     return (
         <div>
             <h1>MERCADO LIBRE API</h1>
-            { items.length === 0 ? (
+            { itemsMl.length === 0 ? (
             <form onSubmit={handleSubmit}>
                 <input
                     value={input}
@@ -36,7 +39,7 @@ const MercadoLibre = () => {
                 return (
                 <article key={itemsMl.id}>
                     <h2>{itemsMl.title}</h2>
-                    <img src={itemsMl.thumbnail} alt="" />
+                    <img src={itemsMl.thumbnail} />
                     <h3>{itemsMl.price}</h3>
                 </article> )
                 })  
