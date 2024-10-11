@@ -9,7 +9,7 @@ const ItemList = ({products}) => {
             <Item product={product} key={product.id}/>
             
         )}
-        <h1>ItemList</h1>
+        {/* <h1>ItemList</h1> */}
     </div>
   )
 }

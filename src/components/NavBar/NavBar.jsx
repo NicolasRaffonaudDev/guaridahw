@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo_2-removebg-preview.png"
 import Cart from "../Cart/Cart";
 import CountVotes from "../CountVotes/CountVotes";
@@ -10,25 +11,25 @@ function Nav({cartCount, title}) {
         <nav className="navbar navbar-dark navbar-expand-md bg-dark p-3">
               <div className="container-fluid">
                 <img src={logo} className="logo" alt="logo" />
-                <a className="navbar-brand text-white fw-bold fs-4" href="#">{title}</a>
+                <Link className="navbar-brand text-white fw-bold fs-4" to="/">{title}</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                   <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
-                      <a className="nav-link text-warning" href="./pages/tienda.html">Tienda</a>
+                      <Link className="nav-link text-warning" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link text-warning" href="#sector-servicios">Servicios</a>
+                      <Link className="nav-link text-warning" to="/featured">Products</Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link text-warning" href="./pages/login.html">Login</a>
+                      <Link className="nav-link text-warning" to="/login">Login</Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link text-warning" href="./pages/contacto.html">Contacto</a>
+                      <Link className="nav-link text-warning" to="/contacto">Contacto</Link>
                     </li>
-                    <li>
+                    <li className="d-none">
                       <CountVotes/>
                     </li>
                     <li className="text-white">
