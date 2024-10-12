@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom"
-
-
-const Item = ({product}) => {
+  const Item = ({product}) => {
   console.log(product)
   return (
     <div key={product.id} className="card align-items-center text-center p-3 my-3" style={{width: 300}}>

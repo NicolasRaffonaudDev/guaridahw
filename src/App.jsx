@@ -14,11 +14,11 @@ import Footer from "./components/Footer/Footer";
 function App() {
 
   const [cartCount, setCartCount] = useState(0);
-  console.log(setCartCount)
+  /* console.log(setCartCount) */
 
   const [view, setView] = useState('home');
-  console.log(setView)
-  console.log(view)
+  /* console.log(setView)
+  console.log(view) */
 
   return (
     //aca queda el ultimo checkpoint
