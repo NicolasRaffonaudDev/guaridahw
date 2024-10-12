@@ -6,6 +6,8 @@ import Carousel from "./components/Carousel/Carousel";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import MercadoLibre from "./components/MercadoLibe/MercadoLibre";
 import { Routes, BrowserRouter, Route } from "react-router-dom";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import Footer from "./components/Footer/Footer";
 
 
 
@@ -23,28 +25,29 @@ function App() {
     <BrowserRouter>
       <NavBar cartCount={cartCount} title="NGR Technical Computer"/>
       <Routes>
-      <Route exact path='/' element={<Carousel />}/>
-      
-      <Route exact path='/featured' element={<Featured />}/>
+        <Route exact path='/' element={<Carousel />}/>     
+        <Route exact path='/featured' element={<Featured />}/>
+        <Route exact path='/detail/:productId' element={<ItemDetailContainer />}/>
+    
         
-        {/* {view === 'home' && (
-          <>
-            <Carousel />
-            <Featured />
-            <ItemListContainer />
-          </>)}
-        {view === 'products' && (
-          <>
-          <CategoriesList/>
-          <Featured />
-          <ItemListContainer />
-          </>)}
-        {view === 'mercadolibre' && (
-          <MercadoLibre />)} */}
+            {/* {view === 'home' && (
+              <>
+                <Carousel />
+                <Featured />
+                <ItemListContainer />
+              </>)}
+            {view === 'products' && (
+              <>
+              <CategoriesList/>
+              <Featured />
+              <ItemListContainer />
+              </>)}
+            {view === 'mercadolibre' && (
+              <MercadoLibre />)} */}
         <Route exact path='*' element={<h1>:( 404 Not found</h1>}/>        
-      </Routes>     
-      
-      <ItemListContainer />
+      </Routes>
+      <MercadoLibre />
+      <Footer />     
     </BrowserRouter>
     
   )

@@ -1,7 +1,31 @@
-/* const ItemDetailContainer = () => {
+import { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom"
+import { getProducts } from "../../asyncMock"
+import ItemDetail from '../ItemDetail/ItemDetail'
+
+const ItemDetailContainer = () => {
+  const [product, setProducts] = useState(null)
+  
+
+  
+  const { productId } = useParams()
+  
+  useEffect(() =>{
+    getProducts(productId)
+        .then((res) => {
+          setProducts(res)
+        })
+        .catch(err => console.log(err))
+
+  }, [productId]);
+  
+  
   return (
-    <div className="container">
-        <div key={product.id} className="card align-items-center text-center p-3 my-3" style={{width: 300}}>
+    <>
+      <ItemDetail {...product} />
+    </>
+    
+       /*  <div key={product.id} className="card align-items-center text-center p-3 my-3" style={{width: 300}}>
             <img src={product.img} style={{width: 200, height:200}} alt={product.name} className="card-img-top"/>
             <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
@@ -11,9 +35,9 @@
                 Ver detalle
                 </a>
             </div>
-        </div>
-    </div>
+        </div> */
+    
   )
 }
 
-export default ItemDetailContainer */
+export default ItemDetailContainer
