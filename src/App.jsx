@@ -24,6 +24,7 @@ function App() {
       <NavBar cartCount={cartCount} title="NGR Technical Computer"/>
       <Routes>
       <Route exact path='/' element={<Carousel />}/>
+      
       <Route exact path='/featured' element={<Featured />}/>
         
         {/* {view === 'home' && (

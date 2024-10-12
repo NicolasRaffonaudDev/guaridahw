@@ -100,10 +100,19 @@ const products = [
     { id: 99, name: "Cooler Master MasterLiquid ML240L RGB", price: 18000, category: "cooling", img: "", stock: 5, description: "Refrigeración líquida Cooler Master ML240L RGB." },
     { id: 100, name: "Acer Predator XB273U", price: 70000, category: "monitor", img: "", stock: 5, description: "Monitor Acer Predator XB273U, 27' con 144Hz." }
 ]
+
 export const getProducts = () => {
     return new Promise((resolve) => {
         setTimeout(()=>{
             resolve(products)
-        }, 2500)
+        }, 1000)
     })
 }
+
+/* export const getProductById = (productId) => {
+    return new Promise((resolve) => {
+        setTimeout(()=>{
+            resolve(products.find((prod) => prod.id ===))
+        }, 1000)
+    })
+} */
