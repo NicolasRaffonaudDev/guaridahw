@@ -1,23 +1,13 @@
 import { useState } from "react";
 
 const MercadoLibre = () => {
-     const [itemsMl, setItemsMl] = useState ([])
-     const [input, setInput] = useState ('')
-    /* useEffect(()=>{
-        fetch(`https://api.mercadolibre.com/sites/MLA/search?q=celulares`)
-        .then((res)=>{
-            return res.json()
-      
-    })
-    .then((articles)=> setItemsMl(articles.results))
-    .catch((error) => console.log(error))
-  }, []) */ 
+    const [itemsMl, setItemsMl] = useState ([])
+    const [input, setInput] = useState ('') 
     const handleSubmit  = (event) => {
         event.preventDefault()
         fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${input}`)
         .then((res)=>{
-            return res.json()
-      
+            return res.json()     
         })
         .then((articles)=> setItemsMl(articles.results))
         .catch((error) => console.log(error));

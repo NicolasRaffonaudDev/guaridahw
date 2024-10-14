@@ -10,15 +10,11 @@ const ItemDetailContainer = () => {
   useEffect(() =>{
     getProductById(productId)
         .then((res) => {
-          console.log("Producto obtenido:", res);
-          setProduct(res);
-          
+          setProduct(res);          
         })
         .catch((err) => console.log("no"));
 
   }, [productId]);
-  
-  console.log("Estado del producto:", product);
   
   return (
     <>

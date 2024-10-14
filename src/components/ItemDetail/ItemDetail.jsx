@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 const ItemDetail = ({id, name, price, img, description}) => {
-  console.log("Props en ItemDetail:", { id, name, img, description, price });
   return (
       <div className="container d-flex justify-content-center text-center">
         <div key={id} className="card align-items-center text-center p-3 my-3" style={{width: 600, height:690}}>
