@@ -4,22 +4,23 @@ import { getProducts } from "../../asyncMock"
 import ItemDetail from '../ItemDetail/ItemDetail'
 
 const ItemDetailContainer = () => {
-  const [product, setProducts] = useState(null) 
+  const [product, setProduct] = useState() 
   const { productId } = useParams()
   
   useEffect(() =>{
     getProducts(productId)
         .then((res) => {
-          setProducts(res)
+          setProduct(res);
+          
         })
-        .catch(err => console.log(err))
+        .catch((err) => console.log("no"));
 
   }, [productId]);
   
-  console.log(product)
+  
   return (
     <>
-      <ItemDetail {...product} />
+      {product ? <ItemDetail {...product} /> : <p>Cargando...</p>}
     </>
     
        /*  <div key={product.id} className="card align-items-center text-center p-3 my-3" style={{width: 300}}>

@@ -7,6 +7,7 @@ const ItemListContainer = () => {
     useEffect(()=>{
         getProducts().then((res)=>{
             setProducts(res)
+            console.log(res)
         })
     }, [])
   return (
