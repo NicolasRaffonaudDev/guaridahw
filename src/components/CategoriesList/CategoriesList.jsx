@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const categories = [
   { id:1, name:'processors', img: "../src/assets/procesadores-logo.webp"},
   { id:2, name:'motherboard', img: "../src/assets/placaMadre-logo.webp"},
@@ -16,9 +18,9 @@ function CategoriesList() {
       <div className="container-fluid col-12 col-sm-8 col-xxl-8 flex-nowrap d-flex justify-content-around">
             <ul className="list-group list-group-horizontal flex-wrap justify-content-around">{categories.map(( category ) => (
               <li className="list-group-item mt-5" key={category.id}>
-                <a href="#">
+                <Link to={`/category/${category.name}`}>
                   <img style={{width:150}} className="" src={category.img} alt={category.name} />
-                  </a>
+                  </Link>
                 </li>
             ))
             }

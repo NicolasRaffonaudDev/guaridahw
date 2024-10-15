@@ -28,22 +28,7 @@ function App() {
         <Route exact path='/' element={<Carousel />}/>     
         <Route exact path='/featured' element={<Featured />}/>
         <Route exact path='/detail/:productId' element={<ItemDetailContainer />}/>
-    
-        
-            {/* {view === 'home' && (
-              <>
-                <Carousel />
-                <Featured />
-                <ItemListContainer />
-              </>)}
-            {view === 'products' && (
-              <>
-              <CategoriesList/>
-              <Featured />
-              <ItemListContainer />
-              </>)}
-            {view === 'mercadolibre' && (
-              <MercadoLibre />)} */}
+        <Route exact path='/category/:categoryId' element={<ItemListContainer />}/>
         <Route exact path='*' element={<h1>:( 404 Not found</h1>}/>        
       </Routes>
       <MercadoLibre />
