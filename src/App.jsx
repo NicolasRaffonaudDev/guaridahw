@@ -26,9 +26,9 @@ function App() {
       <NavBar cartCount={cartCount} title="NGR Technical Computer"/>
       <Routes>
         <Route exact path='/' element={<Carousel />}/>     
-        <Route exact path='/featured' element={<Featured />}/>
-        <Route exact path='/detail/:productId' element={<ItemDetailContainer />}/>
+        <Route exact path='/category' element={<Featured />}/>
         <Route exact path='/category/:categoryId' element={<ItemListContainer />}/>
+        <Route exact path='/detail/:productId' element={<ItemDetailContainer />}/>
         <Route exact path='*' element={<h1>:( 404 Not found</h1>}/>        
       </Routes>
       <MercadoLibre />

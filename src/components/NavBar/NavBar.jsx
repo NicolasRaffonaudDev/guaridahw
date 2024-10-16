@@ -21,7 +21,7 @@ function Nav({cartCount, title}) {
                       <Link className="nav-link text-warning" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link text-warning" to="/featured">Products</Link>
+                      <Link className="nav-link text-warning" to="/category">Products</Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link text-warning" to="/login">Login</Link>

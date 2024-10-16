@@ -5,14 +5,18 @@ import { useParams } from 'react-router-dom'
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([])
-    const {categoryId} = useParams
+    const {categoryId} = useParams();
     console.log(categoryId)
     useEffect(()=>{
-        const asyncFunctions = categoryId ? getProductByCategory : getProducts
-        asyncFunctions().then((res)=>{
-            setProducts(res)
-        })
-    }, [categoryId])
+        console.log('categoryId: ', categoryId);
+        const asyncFunctions = categoryId ? getProductByCategory : getProducts;
+        asyncFunctions(categoryId).then((res)=>{
+          console.log('Products fetched:', res);
+          setProducts(res);
+        }).catch(err => {
+            console.error("Error fetching products: ", err);
+        });
+    }, [categoryId]);
   return (
     <div className='text-center'>
         <div className="jumbotron jumbotron-fluid">

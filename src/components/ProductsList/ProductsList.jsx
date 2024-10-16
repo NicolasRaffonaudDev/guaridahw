@@ -5,7 +5,6 @@ import Product from "../Product/Product"
 const Featured = () => {
     return (
       <>
-        <CategoriesList/>
         <section>
           <div className="jumbotron jumbotron-fluid">
             <div className="container-mdfluid text-center text-white mx-3 my-5 p-4 bg-danger fw-bold">
@@ -25,6 +24,7 @@ const Featured = () => {
             </div>
           </div>
         </section>
+        <CategoriesList/>
         <ItemListContainer />
       </>
     )

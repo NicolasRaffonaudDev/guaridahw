@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 const categories = [
-  { id:1, name:'processors', img: "../src/assets/procesadores-logo.webp"},
+  { id:1, name:'processor', img: "../src/assets/procesadores-logo.webp"},
   { id:2, name:'motherboard', img: "../src/assets/placaMadre-logo.webp"},
   { id:3, name:'graphics_card', img: "../src/assets/gpu-logo-1.webp"},
   { id:4, name:'memory', img: "../src/assets/ram-logo-1.webp"},
