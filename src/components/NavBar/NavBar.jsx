@@ -31,7 +31,7 @@ function Nav({title}) {
                       <Link className="nav-link text-warning" to="/login">Login</Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link text-warning" to="/contacto">Contacto</Link>
+                      <Link className="nav-link text-warning" to="/contact">Contacto</Link>
                     </li>
                     <li className="d-none">
                       <CountVotes/>

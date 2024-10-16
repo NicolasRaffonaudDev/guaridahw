@@ -11,10 +11,10 @@ function Login() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group my-5">
           <label>Email</label>
           <input
             type="email"
@@ -24,7 +24,7 @@ function Login() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group my-5">
           <label>Contraseña</label>
           <input
             type="password"
@@ -34,7 +34,7 @@ function Login() {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary my-5">
           Iniciar sesión
         </button>
       </form>

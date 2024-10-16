@@ -15,16 +15,26 @@ const categories = [
 function CategoriesList() {
   return (
     <>
-      <div className="container-fluid col-12 col-sm-8 col-xxl-8 flex-nowrap d-flex justify-content-around">
-            <ul className="list-group list-group-horizontal flex-wrap justify-content-around">{categories.map(( category ) => (
-              <li className="list-group-item mt-5" key={category.id}>
+      <div className="container-fluid my-5">
+        <div className="row justify-content-center">
+          {categories.map((category) => (
+            <div className="col-6 col-sm-4 col-md-3 col-lg-2 mb-4" key={category.id}>
+              <div className="card text-center p-3">
                 <Link to={`/category/${category.name}`}>
-                  <img style={{width:150}} className="" src={category.img} alt={category.name} />
-                  </Link>
-                </li>
-            ))
-            }
-            </ul>
+                  <img 
+                    className="card-img-top img-fluid" 
+                    src={category.img} 
+                    alt={category.name} 
+                    style={{ height: '100px', objectFit: 'contain' }} 
+                  />
+                </Link>
+                <div className="card-body">
+                  <h5 className="card-title" style={{ fontSize: '1rem' }}>{category.name}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>      
     </>
   )
