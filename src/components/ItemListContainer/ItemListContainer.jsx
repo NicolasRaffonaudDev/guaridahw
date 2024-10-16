@@ -6,12 +6,9 @@ import { useParams } from 'react-router-dom'
 const ItemListContainer = () => {
     const [products, setProducts] = useState([])
     const {categoryId} = useParams();
-    console.log(categoryId)
     useEffect(()=>{
-        console.log('categoryId: ', categoryId);
         const asyncFunctions = categoryId ? getProductByCategory : getProducts;
         asyncFunctions(categoryId).then((res)=>{
-          console.log('Products fetched:', res);
           setProducts(res);
         }).catch(err => {
             console.error("Error fetching products: ", err);

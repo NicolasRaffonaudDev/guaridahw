@@ -25,7 +25,6 @@ const Featured = () => {
           </div>
         </section>
         <CategoriesList/>
-        <ItemListContainer />
       </>
     )
   }
