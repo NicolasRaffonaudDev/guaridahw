@@ -1,10 +1,14 @@
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo_2-removebg-preview.png"
 import Cart from "../Cart/Cart";
 import CountVotes from "../CountVotes/CountVotes";
 import "./NavBar.css"
 
-function Nav({cartCount, title}) {
+function Nav({title}) {
+    const { cartCount } = useContext(CartContext); // Accedemos al estado del carrito
+
     return (
       <div>
         <header>

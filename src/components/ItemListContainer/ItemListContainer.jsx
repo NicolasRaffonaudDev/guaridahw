@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getProductByCategory, getProducts } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
+import CategoriesList from '../CategoriesList/CategoriesList'
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([])
@@ -15,7 +16,9 @@ const ItemListContainer = () => {
         });
     }, [categoryId]);
   return (
-    <div className='text-center'>
+    <>
+      <CategoriesList />
+      <div className='text-center'>
         <div className="jumbotron jumbotron-fluid">
           <div className="container-mdfluid text-center text-dark mx-3 my-5 p-4 bg-warning fw-bold">
             <h1 className="display-md-4">STOCK COMPLETO</h1>
@@ -23,7 +26,8 @@ const ItemListContainer = () => {
           </div>
         </div>
         <ItemList products={products}/>
-    </div>
+      </div>
+    </>
   )
 }
 

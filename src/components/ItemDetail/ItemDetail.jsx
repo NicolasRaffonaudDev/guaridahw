@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom"
 
 const ItemDetail = ({id, name, price, img, description}) => {
+  const { addToCart } = useContext(CartContext);
+  const handleAddToCart = () => {
+    addToCart(1); // Aquí añadimos 1 producto al carrito
+  };
   return (
       <div className="container d-flex justify-content-center text-center">
         <div key={id} className="card align-items-center text-center p-3 my-3" style={{width: 600, height:690}}>
@@ -9,6 +15,9 @@ const ItemDetail = ({id, name, price, img, description}) => {
               <h5 className="card-title">{name}</h5>
               <p className="card-text">{description}</p>
               <h2 className="card-text text-danger">$ {price}</h2>
+              <button onClick={handleAddToCart} className="btn btn-primary">
+                Añadir al carrito
+              </button>
               <Link to="" className="btn btn-primary">
               Ver detalle
               </Link>
