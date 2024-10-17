@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom"
+import ItemCount from "../ItemCount/ItemCount";
 
-const ItemDetail = ({id, name, price, img, description}) => {
+const ItemDetail = ({id, name, price, img, description, stock}) => {
   const { addToCart } = useContext(CartContext);
   const handleAddToCart = () => {
     addToCart(1); // Aquí añadimos 1 producto al carrito
@@ -15,6 +16,8 @@ const ItemDetail = ({id, name, price, img, description}) => {
               <h5 className="card-title">{name}</h5>
               <p className="card-text">{description}</p>
               <h2 className="card-text text-danger">$ {price}</h2>
+              <h3 className="card-text text-dark">Quedan: {stock} unidades disponibles!</h3>
+              <ItemCount stock={stock}/>
               <button onClick={handleAddToCart} className="btn btn-primary">
                 Añadir al carrito
               </button>
