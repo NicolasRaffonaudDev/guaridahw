@@ -1,11 +1,12 @@
 /* import { useState } from 'react'
 
-function CartCount() {
-    const [cartCount, setCartCount] = useState(0);
-
-    return (
-        <div>CartCount</div>
-    )
+function Product({ name, addToCart }) {
+  return (
+    <div>
+      <h2>{name}</h2>
+      <button onClick={addToCart}>Añadir al carrito</button>
+    </div>
+  );
 }
 
 export default CartCount */
