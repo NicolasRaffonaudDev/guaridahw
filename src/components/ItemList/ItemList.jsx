@@ -1,12 +1,12 @@
 import Item from "../Item/Item"
 
-const ItemList = ({products}) => {
-    
+const ItemList = ({ products }) => {
+
   return (
     <div className="container d-flex flex-wrap justify-content-between">
-        {products.map( (product)=>            
-            <Item product={product} key={product.id}/>            
-        )}
+      {products.map((product) =>
+        <Item product={product} key={product.id} />
+      )}
     </div>
   )
 }

@@ -24,15 +24,15 @@ function App() {// Accedemos al estado del carrito
     //aca queda el ultimo checkpoint
     <CartProvider>
       <BrowserRouter>
-        <NavBar cartCount={cartCount} title="SpaceStore"/>
+        <NavBar cartCount={cartCount} title="SpaceStore" />
         <Routes>
-          <Route exact path='/' element={<Carousel />}/>
-          <Route exact path='/category' element={<Featured />}/>
-          <Route exact path='/category/:categoryId' element={<ItemListContainer addToCart={addToCart}/>}/>
-          <Route exact path='/detail/:productId' element={<ItemDetailContainer addToCart={addToCart}/>}/>
+          <Route exact path='/' element={<Carousel />} />
+          <Route exact path='/category' element={<Featured />} />
+          <Route exact path='/category/:categoryId' element={<ItemListContainer addToCart={addToCart} />} />
+          <Route exact path='/detail/:productId' element={<ItemDetailContainer addToCart={addToCart} />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/contact' element={<Contact />} />
-          <Route exact path='*' element={<h1>:( 404 Not found</h1>}/>
+          <Route exact path='*' element={<h1>:( 404 Not found</h1>} />
         </Routes>
         {/* <MercadoLibre /> */}
         <Footer />

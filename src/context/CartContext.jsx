@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
-        
+
         if (existingItem) {
             // Si ya existe, sumamos la cantidad
             setCartItems(prevItems =>

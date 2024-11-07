@@ -5,16 +5,16 @@ import { useParams } from 'react-router-dom'
 import CategoriesList from '../CategoriesList/CategoriesList'
 
 const ItemListContainer = () => {
-    const [products, setProducts] = useState([])
-    const {categoryId} = useParams();
-    useEffect(()=>{
-        const asyncFunctions = categoryId ? getProductByCategory : getProducts;
-        asyncFunctions(categoryId).then((res)=>{
-          setProducts(res);
-        }).catch(err => {
-            console.error("Error fetching products: ", err);
-        });
-    }, [categoryId]);
+  const [products, setProducts] = useState([])
+  const { categoryId } = useParams();
+  useEffect(() => {
+    const asyncFunctions = categoryId ? getProductByCategory : getProducts;
+    asyncFunctions(categoryId).then((res) => {
+      setProducts(res);
+    }).catch(err => {
+      console.error("Error fetching products: ", err);
+    });
+  }, [categoryId]);
   return (
     <>
       <CategoriesList />
@@ -25,7 +25,7 @@ const ItemListContainer = () => {
             <p className="lead">Mira este increible catalogo lleno de componentes!</p>
           </div>
         </div>
-        <ItemList products={products}/>
+        <ItemList products={products} />
       </div>
     </>
   )

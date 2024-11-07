@@ -22,17 +22,17 @@ const ItemCount = ({ stock, onCountChange }) => {
             });
         }
     };
-    
+
 
     return (
         <div className="container mt-4">
             <div className="d-flex justify-content-center align-items-center">
                 <button className="btn btn-outline-secondary btn-sm rounded-circle" type="button" onClick={decrement}>
-                <i className="fa fa-minus"></i>
+                    <i className="fa fa-minus"></i>
                 </button>
                 <p className="m-0 mx-2" style={{ fontSize: '1rem' }}>{count}</p>
                 <button className="btn btn-outline-secondary btn-sm rounded-circle" type="button" onClick={increment}>
-                <i className="fa fa-plus"></i>
+                    <i className="fa fa-plus"></i>
                 </button>
             </div>
         </div>
