@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { getProductByCategory, getProducts } from '../../asyncMock'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+/* import { getProductByCategory, getProducts } from '../../asyncMock' */
 import { db } from '../../services/firebase'
 import ItemList from '../ItemList/ItemList'
 import CategoriesList from '../CategoriesList/CategoriesList'
@@ -9,20 +9,29 @@ import CategoriesList from '../CategoriesList/CategoriesList'
 const ItemListContainer = () => {
   const [products, setProducts] = useState([])
   const { categoryId } = useParams();
+  
   useEffect(() => {
-    const  collectionRef = categoryId
-    ? query(collection(db, "products"), where("category", "==", categoryId))
-    : collection(db, "products")
+    const collectionRef = categoryId
+      ? query(collection(db, "products"), where("category", "==", categoryId))
+      : collection(db, "products");
 
     getDocs(collectionRef)
-    
-    const asyncFunctions = categoryId ? getProductByCategory : getProducts;
-    asyncFunctions(categoryId).then((res) => {
-      setProducts(res);
-    }).catch(err => {
-      console.error("Error fetching products: ", err);
-    });
+      .then((querySnapshot) => {
+        const productsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(productsData);
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+      });
   }, [categoryId]);
+  
+      /* const asyncFunctions = categoryId ? getProductByCategory : getProducts;
+      asyncFunctions(categoryId).then((res) => {
+        setProducts(res);
+      }) */
   return (
     <>
       <CategoriesList />

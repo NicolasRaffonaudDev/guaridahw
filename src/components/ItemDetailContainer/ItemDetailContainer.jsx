@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
-import { getProductById } from "../../asyncMock"
-import ItemDetail from '../ItemDetail/ItemDetail'
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+/* import { getProductById } from "../../asyncMock"; */
+import ItemDetail from '../ItemDetail/ItemDetail';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase';
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState()
   const { productId } = useParams()
 
   useEffect(() => {
-    getProductById(productId)
-      .then((res) => {
-        setProduct(res);
+    getDoc(doc(db, "products", productId))
+      .then((querySnapshot) => {
+        const product = {id: querySnapshot.id, ...querySnapshot.data()}
+        setProduct(product);
       })
       .catch((err) => console.log(err));
 
