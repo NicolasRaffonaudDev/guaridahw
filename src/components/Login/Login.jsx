@@ -1,14 +1,27 @@
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../services/firebase";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes manejar la lógica de autenticación
-    console.log("Login con", email, password);
-  };
+    setError(null); // Limpia mensajes anteriores
+    setSuccess(false);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setSuccess(true); // Indica que el login fue exitoso
+      console.log("Login exitoso");
+    } catch (err) {
+      setError("Error al iniciar sesión. Revisa tus credenciales.");
+      console.error(err);
+    }
+  }
 
   return (
     <div className="container my-5">
@@ -38,6 +51,8 @@ function Login() {
           Iniciar sesión
         </button>
       </form>
+      {error && <div className="alert alert-danger mt-3">{error}</div>}
+      {success && <div className="alert alert-success mt-3">¡Inicio de sesión exitoso!</div>}
     </div>
   );
 }
