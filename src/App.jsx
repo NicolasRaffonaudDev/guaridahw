@@ -9,7 +9,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 import Contact from "./components/Contact/Contact";
-import Cart from "./components/Cart/Cart";
+import CartView from "./components/CartView/CartView";
 import Checkout from "./components/Checkout/Checkout";
 import "./App.css"
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
@@ -47,7 +47,7 @@ function App() {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/contact' element={<Contact />} />
 {/* implementando Cart */}
-          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/cart" element={<CartView />} />
           <Route exact path="/checkout" element={<Checkout />} />
 
           <Route exact path='*' element={<h1>:( 404 Not found</h1>} />
