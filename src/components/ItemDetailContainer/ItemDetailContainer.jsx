@@ -13,6 +13,7 @@ const ItemDetailContainer = () => {
       .then((querySnapshot) => {
         const product = {id: querySnapshot.id, ...querySnapshot.data()}
         setProduct(product);
+        console.log(product); // Confirma que stock y otros datos se reciben correctamente
       })
       .catch((err) => console.log(err));
 

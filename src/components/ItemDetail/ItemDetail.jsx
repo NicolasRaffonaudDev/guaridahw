@@ -1,18 +1,31 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ id, name, price, img, description, stock }) => {
   const { addToCart } = useContext(CartContext);
   const [count, setCount] = useState(1);
 
+  // Reiniciar count a 1 cuando cambie el producto
+  useEffect(() => {
+    setCount(1);
+  }, [id]);
+
   const handleAddToCart = () => {
+    // Verificación para asegurarse de que la cantidad no supere el stock disponible
+    if (count > stock) {
+      alert(`La cantidad solicitada excede el stock disponible de ${stock} unidades.`);
+      return;
+    }
+
     const item = {
       id,
-      quantity: count
+      name,
+      price,
+      quantity: count,
     };
-    addToCart(item); // Añadimos el objeto del producto con su cantidad
+    addToCart(item);
   };
 
   return (
@@ -42,7 +55,7 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ItemDetail
+export default ItemDetail;

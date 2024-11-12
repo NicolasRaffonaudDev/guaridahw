@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-function Cart({ cartCount }) {
+function Cart() {
+    const { cartCount } = useContext(CartContext);
+
     return (
         <Link className="nav-link d-flex align-items-center" to="/cart">
             <svg
@@ -17,4 +21,4 @@ function Cart({ cartCount }) {
     )
 }
 
-export default Cart
+export default Cart;

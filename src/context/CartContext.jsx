@@ -27,8 +27,24 @@ export const CartProvider = ({ children }) => {
         setCartCount(prevCount => prevCount + item.quantity); // Actualiza el contador total
     };
 
+    const removeFromCart = (itemId) => {
+        setCartItems(prevItems => prevItems.map(item =>
+            item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+        ).filter(item => item.quantity > 0));
+        
+        setCartCount(prevCount => prevCount - 1);
+    };
+
+    const deleteFromCart = (itemId) => {
+        const itemToDelete = cartItems.find(item => item.id === itemId);
+        if (itemToDelete) {
+            setCartCount(prevCount => prevCount - itemToDelete.quantity);
+        }
+        setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+    };
+
     return (
-        <CartContext.Provider value={{ cartCount, addToCart }}>
+        <CartContext.Provider value={{ cartCount, cartItems, addToCart, removeFromCart, deleteFromCart }}>
             {children}
         </CartContext.Provider>
     );
