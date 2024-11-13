@@ -13,7 +13,6 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
   }, [id]);
 
   const handleAddToCart = () => {
-    // Verificación para asegurarse de que la cantidad no supere el stock disponible
     if (count > stock) {
       alert(`La cantidad solicitada excede el stock disponible de ${stock} unidades.`);
       return;
@@ -23,6 +22,7 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
       id,
       name,
       price,
+      stock,  // importante para validar en el contexto
       quantity: count,
     };
     addToCart(item);

@@ -13,9 +13,9 @@ const CartItem = ({ id, name, quantity, price }) => {
           <p className="font-bold">Total: ${price * quantity}</p>
         </section>
         <section className="flex gap-2">
-          <button onClick={() => addToCart({ id, name, price, quantity: 1 })} className="px-2 py-1 bg-green-500 text-white rounded">+</button>
-          <button onClick={() => removeFromCart(id)} className="px-2 py-1 bg-yellow-500 text-white rounded">-</button>
-          <button onClick={() => deleteFromCart(id)} className="px-2 py-1 bg-red-500 text-white rounded">Eliminar</button>
+          <button onClick={() => addToCart({ id, name, price, quantity: 1 })} className="btn btn-primary text-white rounded">+ agregar</button>
+          <button onClick={() => removeFromCart(id)} className="btn btn-primary text-white rounded">- restar</button>
+          <button onClick={() => deleteFromCart(id)} className="btn btn-primary text-white rounded">Eliminar Carrito</button>
         </section>
     </article>
   );
