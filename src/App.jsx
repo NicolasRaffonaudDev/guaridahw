@@ -12,6 +12,7 @@ import Contact from "./components/Contact/Contact";
 import CartView from "./components/CartView/CartView";
 import Checkout from "./components/Checkout/Checkout";
 import "./App.css";
+
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
 
 function App() {
