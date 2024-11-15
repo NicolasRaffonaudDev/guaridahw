@@ -3,6 +3,7 @@ import { useCart } from '../../hooks/useCart';
 import { db } from '../../services/firebase';
 import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const Checkout = () => {
     const { cartItems, cartCount, clearCart } = useCart();
@@ -93,6 +94,28 @@ const Checkout = () => {
         }
     };
 
+    const confirmPurchase = () => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Deseas completar tu compra?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, completar compra',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                createOrder(); // Solo se ejecuta si el usuario confirma
+                Swal.fire(
+                    '¡Confirmado!',
+                    'Tu orden está siendo procesada.',
+                    'success'
+                );
+            }
+        });
+    };
+
     if (loading) {
         return <h1 className="text-center mt-5">Se está generando la orden...</h1>;
     }
@@ -149,7 +172,7 @@ const Checkout = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <button type="button" className="btn btn-primary" onClick={createOrder}>
+                <button type="button" className="btn btn-primary" onClick={confirmPurchase}>
                     Finalizar Compra
                 </button>
             </form>
