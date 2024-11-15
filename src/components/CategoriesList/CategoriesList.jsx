@@ -15,21 +15,21 @@ const categories = [
 function CategoriesList() {
   return (
     <>
-      <div className="container-fluid my-5">
+      <div className="container-fluid my-2">
         <div className="row justify-content-center">
           {categories.map((category) => (
-            <div className="col-6 col-sm-4 col-md-3 col-lg-2 mb-4" key={category.id}>
-              <div className="card text-center p-3">
+            <div className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3" style={{ width: '150px' }} key={category.id}>
+              <div className="card text-center">
                 <Link to={`/category/${category.name}`}>
                   <img
-                    className="card-img-top img-fluid"
+                    className="card-img-center img-fluid"
                     src={category.img}
                     alt={category.name}
-                    style={{ height: '100px', objectFit: 'contain' }}
+                    style={{ height: '80px', objectFit: 'contain' }}
                   />
                 </Link>
                 <div className="card-body">
-                  <h5 className="card-title" style={{ fontSize: '1rem' }}>{category.name}</h5>
+                  <span className="card-title" style={{ fontSize: '0.7rem' }}>{category.name}</span>
                 </div>
               </div>
             </div>

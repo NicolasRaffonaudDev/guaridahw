@@ -25,6 +25,11 @@ export const CartProvider = ({ children }) => {
                     : cartItem
                 );
                 
+                
+                // Actualizamos cartCount según la diferencia de cantidad
+                const addedQuantity = newQuantity - existingItem.quantity;
+                setCartCount(prevCount => prevCount + addedQuantity);
+                
                 toast.success(`¡${item.name} añadido al carrito!`, {
                     position: "bottom-left",
                     autoClose: 2000,
@@ -33,11 +38,6 @@ export const CartProvider = ({ children }) => {
                     pauseOnHover: true,
                     draggable: true,
                 });
-                
-                // Actualizamos cartCount según la diferencia de cantidad
-                const addedQuantity = newQuantity - existingItem.quantity;
-                setCartCount(prevCount => prevCount + addedQuantity);
-
                 return updatedItems;
                 
             } else {
@@ -78,9 +78,41 @@ export const CartProvider = ({ children }) => {
         setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
     };
 
+    
+
     const clearCart = () => {
-        setCartItems([]);
-        setCartCount(0);
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Se eliminarán todos los productos del carrito.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, vaciar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setCartItems([]);
+                setCartCount(0);
+    
+                // Notificación personalizada con Toastify
+                toast.success('¡Carrito vaciado con éxito!', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    style: {
+                        backgroundColor: '#4caf50',
+                        color: '#fff',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                    },
+                });
+            }
+        });
     }
 
     return (
