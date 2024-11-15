@@ -12,6 +12,9 @@ import Contact from "./components/Contact/Contact";
 import CartView from "./components/CartView/CartView";
 import Checkout from "./components/Checkout/Checkout";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import CategoriesList from "./components/CategoriesList/CategoriesList";
 
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
 
@@ -38,7 +41,7 @@ function App() {
         <Routes>
           {/* Rutas principales */}
           <Route exact path="/" element={<Carousel />} />
-          <Route exact path="/category" element={<Featured />} />
+          <Route exact path="/category" element={<CategoriesList />} />
 
           {/* Rutas de Productos */}
           <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
@@ -57,6 +60,7 @@ function App() {
         </Routes>
 
         <Footer />
+        <ToastContainer />
       </BrowserRouter>
     </CartProvider>
   );

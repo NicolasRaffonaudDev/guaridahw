@@ -1,6 +1,7 @@
 // CartContext.js
 
 import { createContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // Creamos el contexto
 export const CartContext = createContext();
@@ -14,26 +15,39 @@ export const CartProvider = ({ children }) => {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
 
+            
             if (existingItem) {
                 // Calculamos la nueva cantidad, respetando el stock disponible
                 const newQuantity = Math.min(existingItem.quantity + item.quantity, item.stock);
                 const updatedItems = prevItems.map(cartItem =>
                     cartItem.id === item.id
-                        ? { ...cartItem, quantity: newQuantity }
-                        : cartItem
+                    ? { ...cartItem, quantity: newQuantity }
+                    : cartItem
                 );
-
+                
+                toast.success(`¡${item.name} añadido al carrito!`, {
+                    position: "bottom-left",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                
                 // Actualizamos cartCount según la diferencia de cantidad
                 const addedQuantity = newQuantity - existingItem.quantity;
                 setCartCount(prevCount => prevCount + addedQuantity);
 
                 return updatedItems;
+                
             } else {
                 // Si no existe, lo agregamos respetando el stock
                 const quantityToAdd = Math.min(item.quantity, item.stock);
                 setCartCount(prevCount => prevCount + quantityToAdd);
                 return [...prevItems, { ...item, quantity: quantityToAdd }];
             }
+            
+            
         });
     };
 
@@ -45,6 +59,14 @@ export const CartProvider = ({ children }) => {
 
             setCartCount(prevCount => prevCount - 1);
             return updatedItems;
+        });
+        toast.info('Producto eliminado del carrito', {
+            position: "bottom-left",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
         });
     };
 

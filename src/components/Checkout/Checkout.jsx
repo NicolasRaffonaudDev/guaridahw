@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../../hooks/useCart';
 import { db } from '../../services/firebase';
 import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 const Checkout = () => {
     const { cartItems, cartCount, clearCart } = useCart();
@@ -51,16 +52,41 @@ const Checkout = () => {
 
             if (outOfStock.length === 0) {
                 await batch.commit();
-
                 const orderRef = collection(db, 'orders');
                 const orderAdded = await addDoc(orderRef, objOrder);
+
+                toast.success('¡Compra realizada con exito!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+
                 console.log(`El id de su orden es ${orderAdded.id}`);
                 clearCart();
                 setOrderCreated(true);
             } else {
+                toast.error('Algunos productos están fuera de stock.', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
                 console.log('Hay productos que están fuera de stock');
             }
         } catch (error) {
+            toast.error('Error al crear la orden. Inténtalo nuevamente.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             console.log('Error al crear la orden:', error);
         } finally {
             setLoading(false);
