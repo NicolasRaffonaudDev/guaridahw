@@ -74,8 +74,7 @@ export const CartProvider = ({ children }) => {
                     pauseOnHover: true,
                     draggable: true,
                 });
-    
-                return [...normalizedItems, { ...item, quantity: quantityToAdd }];
+                return [...normalizedItems, { ...item, quantity: quantityToAdd, img: item.img }];
             }
         });
     };

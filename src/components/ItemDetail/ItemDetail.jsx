@@ -22,6 +22,7 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
       id,
       name,
       price,
+      img,
       stock,  // importante para validar en el contexto
       quantity: count,
     };

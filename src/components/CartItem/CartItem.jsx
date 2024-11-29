@@ -1,42 +1,72 @@
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "./CartItem.css"
 
-const CartItem = ({ id, name, quantity, price, stock }) => {
-  console.log(quantity, price)
+const CartItem = ({ id, name, quantity, price, stock, img }) => {
   const { addToCart, removeFromCart, deleteFromCart } = useContext(CartContext);
 
   return (
-    <article className="flex items-center justify-between p-4 border-b">
-      <section>
-        <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm">Cantidad: {quantity}</p>
-        <p className="text-sm">Precio unitario: ${price}</p>
-        <p className="font-bold">Total: ${price * quantity}</p>
-      </section>
-      <section className="flex gap-2">
-        <button
-          onClick={() => {
-            if (quantity < stock) {
-              addToCart({ id, name, price, quantity: 1, stock });
-            } else {
-              toast.info(`¡No puedes agregar más de ${stock} unidades de este producto!`, {
-                position: "bottom-left",
-                autoClose: 2000,
-              });
-            }
-          }}
-          className="btn btn-primary text-white rounded"
-        >
-          <i className="fas fa-shopping-cart me-4"></i>
-          + agregar
-        </button>
-        <button onClick={() => removeFromCart(id)} className="btn btn-primary text-white rounded">- restar</button>
-        <button onClick={() => deleteFromCart(id)} className="btn btn-primary text-white rounded">Eliminar Carrito</button>
-        <Link className="btn btn-primary text-white rounded" to="/checkout">Generar Orden</Link>
-      </section>
-    </article>
+    <div className="card mb-3 shadow-sm">
+      <div className="row g-0">
+        <div className="col-md-2 d-flex align-items-center justify-content-center">
+          <img
+            src={img}
+            alt={name}
+            className="img-fluid rounded-start"
+          />
+        </div>
+        <div className="col-md-10">
+          <div className="card-body d-flex align-items-center justify-content-between">
+            <div>
+              <h5 className="card-title">{name}</h5>
+              <p className="card-text text-muted mb-1">Cantidad: {quantity}</p>
+              <p className="card-text text-muted mb-1">Precio unitario: ${price}</p>
+              <p className="fw-bold">Subtotal: ${price * quantity}</p>
+            </div>
+            <div className="d-flex align-items-center gap-2">
+              <button
+                className="btn btn-sm btn-outline-primary"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Agregar una unidad al carrito"
+                onClick={() => {
+                  if (quantity < stock) {
+                    addToCart({ id, name, price, quantity: 1, stock });
+                  } else {
+                    toast.info(`No puedes agregar más de ${stock} unidades.`, {
+                      position: "bottom-left",
+                      autoClose: 2000,
+                    });
+                  }
+                }}
+              >
+                <FaPlus />
+              </button>
+              <button
+                className="btn btn-sm btn-outline-warning"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Quitar una unidad al carrito"
+                onClick={() => removeFromCart(id)}
+              >
+                <FaMinus />
+              </button>
+              <button
+                className="btn btn-sm btn-outline-danger"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Eliminar producto del carrito"
+                onClick={() => deleteFromCart(id)}
+              >
+                <FaTrash />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
