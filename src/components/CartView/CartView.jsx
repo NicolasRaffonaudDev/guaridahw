@@ -12,7 +12,7 @@ const CartView = () => {
       <div>
         {cartItems.length > 0 ? (
           cartItems.map(item => (
-            <CartItem key={item.id} {...item} />
+            <CartItem key={item.id} {...item} stock={item.stock}/>
           ))
         ) : (
           <p className="text-center text-gray-500">El carrito está vacío.</p>
