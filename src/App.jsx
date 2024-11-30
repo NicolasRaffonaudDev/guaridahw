@@ -1,20 +1,20 @@
 // App.js
 import { Routes, BrowserRouter, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
+import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
 import Carousel from "./components/Carousel/Carousel";
+import CategoriesList from "./components/CategoriesList/CategoriesList";
 import Featured from "./components/ProductsList/ProductsList";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 import Contact from "./components/Contact/Contact";
 import CartView from "./components/CartView/CartView";
 import Checkout from "./components/Checkout/Checkout";
-import "./App.css";
-import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer/Footer";
 import 'react-toastify/dist/ReactToastify.css';
-import CategoriesList from "./components/CategoriesList/CategoriesList";
+import "./App.css";
 
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
 
