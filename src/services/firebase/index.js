@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBs6P1crD6r6CIUWGcsuc1KbSZ1UY32uXU",
-  authDomain: "tienda-ecommerce-guaridahw.firebaseapp.com",
-  projectId: "tienda-ecommerce-guaridahw",
-  storageBucket: "tienda-ecommerce-guaridahw.appspot.com",
-  messagingSenderId: "443153257492",
-  appId: "1:443153257492:web:24b86b778787d01d388301"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 const app = initializeApp(firebaseConfig);
