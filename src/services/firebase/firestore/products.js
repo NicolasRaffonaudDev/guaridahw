@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { createProductAdaptedFromFirebase } from '../../../adapters/ProductAdapter';
 import { db } from '../';
 
@@ -20,7 +20,17 @@ export const getProducts  = (categoryId) => {
     })
 };
 
-const getProductById = () => {
+export const getProductById = (itemId) => {
+    const productDoc = doc(db, "products", itemId)
 
+    return getDoc(productDoc)
+    .then((queryDocumentSnapshot)=>{
+        const productAdapted = createProductAdaptedFromFirebase(queryDocumentSnapshot);
+
+        return (productAdapted)
+    })
+    .catch((err)=>{
+        return err
+    })
 }
 
