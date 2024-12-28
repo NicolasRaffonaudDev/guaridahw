@@ -3,11 +3,11 @@ export const createProductAdaptedFromFirebase = ( doc ) => {
 
     return {
         id: doc.id,
-        category: doc.category,
-        description: doc.description,
-        img: doc.img,
-        name: doc.name,
-        price: doc.price,
-        stock: doc.stock,
+        category: data.category,
+        description: data.description,
+        img: data.img,
+        name: data.name,
+        price: data.price,
+        stock: data.stock,
     }
 }
