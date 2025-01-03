@@ -17,7 +17,7 @@ export const useAsync = (asyncFunction, dependencies = [] ) => {
         .finally(()=>{
             setLoading(false);
         })
-    },[dependencies]);
+    }, dependencies);
 
     return {
         data,
