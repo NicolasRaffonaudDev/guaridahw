@@ -101,7 +101,7 @@ const products = [
     { id: 100, name: "Acer Predator XB273U", price: 70000, category: "monitor", img: "https://lcdn.mediagalaxy.ro/resize/media/catalog/product/x/b/2bd48d28d1c32adea0e55139a4e6434a/xb273u_v3_3_805b2d22.jpg", stock: 5, description: "Monitor Acer Predator XB273U, 27' con 144Hz." }
 ]
 
-export const getProducts = () => {
+/* export const getProducts = () => {
     return new Promise((resolve) => {
         setTimeout(()=>{
             resolve(products)
@@ -125,4 +125,4 @@ export const getProductByCategory = (categoryId) => {
             resolve(products.filter((prod) => prod.category === categoryId))
         }, 1000)
     });
-} ;
+} ; */

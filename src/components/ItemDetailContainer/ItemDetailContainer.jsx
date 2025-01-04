@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import { useAsync } from '../../hooks/useAsync';
+import { getProductById } from '../../services/firebase/firestore/products';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
 import CategoriesList from '../CategoriesList/CategoriesList';
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState()
-  const { productId } = useParams()
+  const { productId } = useParams();
+  const asyncFunction = () => getProductById( productId );
+  const { data: product, loading, error } = useAsync(asyncFunction, [productId]);
 
-  useEffect(() => {
-    getDoc(doc(db, "products", productId))
-      .then((querySnapshot) => {
-        const product = {id: querySnapshot.id, ...querySnapshot.data()}
-        setProduct(product);
-      })
-      .catch((err) => console.log(err));
+  if(loading) {
+    return (
+      <h1>Cargando productos</h1>
+    );
+  }
 
-  }, [productId]);
+  if(error) {
+    return (
+      <h1>Error al cargar productos</h1>
+    );
+  }
 
   return (
     <>
