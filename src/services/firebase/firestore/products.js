@@ -27,7 +27,7 @@ export const getProductById = (itemId) => {
     .then((queryDocumentSnapshot)=>{
         const productAdapted = createProductAdaptedFromFirebase(queryDocumentSnapshot);
 
-        return (productAdapted)
+        return productAdapted
     })
     .catch((err)=>{
         return err

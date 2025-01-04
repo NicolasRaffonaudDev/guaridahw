@@ -1,31 +1,26 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../../services/firebase'
+import { getProducts } from '../../services/firebase/firestore/products';
+import { useAsync } from '../../hooks/useAsync';
 import ItemList from '../ItemList/ItemList'
 import CategoriesList from '../CategoriesList/CategoriesList'
 
 const ItemListContainer = () => {
-  const [products, setProducts] = useState([])
   const { categoryId } = useParams();
-  
-  useEffect(() => {
-    const collectionRef = categoryId
-      ? query(collection(db, "products"), where("category", "==", categoryId))
-      : collection(db, "products");
+  const asyncFunction = () => getProducts(categoryId);
 
-    getDocs(collectionRef)
-      .then((querySnapshot) => {
-        const productsData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setProducts(productsData);
-      })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-      });
-  }, [categoryId]);
+  const {data: products, loading, error} = useAsync(asyncFunction, [categoryId]);
+
+  if(loading) {
+    return (
+      <h1>Cargando productos</h1>
+    );
+  }
+
+  if(error) {
+    return (
+      <h1>Error al cargar productos</h1>
+    );
+  }
   
   return (
     <>
