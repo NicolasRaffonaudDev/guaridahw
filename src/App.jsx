@@ -36,31 +36,37 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
+
+      <div className="d-flex flex-column min-vh-100">
         <NavBar title="Guarida del HardWare" />
-        
-        <Routes>
-          {/* Rutas principales */}
-          <Route exact path="/" element={<Carousel />} />
-          <Route exact path="/category" element={<CategoriesList />} />
 
-          {/* Rutas de Productos */}
-          <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
-          <Route exact path="/detail/:productId" element={<ItemDetailContainer />} />
+        <main className="flex-grow-1">
+          <Routes>
+            {/* Rutas principales */}
+            <Route exact path="/" element={<Carousel />} />
+            <Route exact path="/category" element={<CategoriesList />} />
 
-          {/* Otras secciones */}
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/contact" element={<Contact />} />
+            {/* Rutas de Productos */}
+            <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
+            <Route exact path="/detail/:productId" element={<ItemDetailContainer />} />
 
-          {/* Rutas de Carrito y Checkout */}
-          <Route exact path="/cart" element={<CartView />} />
-          <Route exact path="/checkout" element={<Checkout />} />
+            {/* Otras secciones */}
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/contact" element={<Contact />} />
 
-          {/* Ruta para página no encontrada */}
-          <Route path="*" element={<h1>:( 404 Not found</h1>} />
-        </Routes>
+            {/* Rutas de Carrito y Checkout */}
+            <Route exact path="/cart" element={<CartView />} />
+            <Route exact path="/checkout" element={<Checkout />} />
+
+            {/* Ruta para página no encontrada */}
+            <Route path="*" element={<h1>:( 404 Not found</h1>} />
+          </Routes>
+        </main>
 
         <Footer />
         <ToastContainer />
+        </div>
+        
       </BrowserRouter>
     </CartProvider>
   );

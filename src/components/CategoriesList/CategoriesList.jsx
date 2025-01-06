@@ -15,7 +15,7 @@ const categories = [
 function CategoriesList() {
   return (
     <>
-      <div className="container-fluid my-2">
+      <div className="container-fluid my-5">
         <div className="row justify-content-center">
           {categories.map((category) => (
             <div className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3" style={{ width: '150px' }} key={category.id}>
@@ -35,6 +35,12 @@ function CategoriesList() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="jumbotron jumbotron-fluid">
+          <div className="container-mdfluid text-center text-dark mx-3 my-5 p-4 bg-warning fw-bold">
+            <h1 className="display-md-4">STOCK COMPLETO</h1>
+            <p className="lead">Mira este increible catalogo lleno de componentes!</p>
+          </div>
       </div>
     </>
   )
