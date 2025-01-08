@@ -21,13 +21,13 @@ function Nav({ title }) {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                  <NavLink activeClassName="active-link" className="nav-link text-warning" to="/">Home</NavLink>
+                  <NavLink activeClassName="active-link" className="nav-link text-warning" to="/">Inicio</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink activeClassName="active-link" className="nav-link text-warning" to="/category">Products</NavLink>
+                  <NavLink activeClassName="active-link" className="nav-link text-warning" to="/category">Catalogo</NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-warning" to="/login">Login</Link>
+                  <Link className="nav-link text-warning" to="/login">Sesion</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link text-warning" to="/contact">Contacto</Link>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase";
+import "./Login.css"
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,38 +22,40 @@ function Login() {
       setError("Error al iniciar sesión. Revisa tus credenciales.");
       console.error(err);
     }
-  }
+  };
 
   return (
-    <div className="container my-5">
-      <h2>Iniciar sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group my-5">
-          <label>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group my-5">
-          <label>Contraseña</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary my-5">
-          Iniciar sesión
-        </button>
-      </form>
-      {error && <div className="alert alert-danger mt-3">{error}</div>}
-      {success && <div className="alert alert-success mt-3">¡Inicio de sesión exitoso!</div>}
+    <div className="container my-5 d-flex justify-content-center align-items-center">
+      <div className="login-card p-4 rounded">
+        <h2 className="text-center mb-4">Iniciar sesión</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-4">
+            <label className="form-label">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label className="form-label">Contraseña</label>
+            <input
+              type="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100 decorative">
+            Iniciar sesión
+          </button>
+        </form>
+        {error && <div className="alert alert-danger mt-3">{error}</div>}
+        {success && <div className="alert alert-success mt-3">¡Inicio de sesión exitoso!</div>}
+      </div>
     </div>
   );
 }

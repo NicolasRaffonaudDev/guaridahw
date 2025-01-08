@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-dark opacity-75 text-light py-5">
@@ -14,10 +16,18 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>Enlaces rápidos</h5>
             <ul className="list-unstyled">
-              <li><a href="#inicio" className="text-light text-decoration-none">Inicio</a></li>
-              <li><a href="#productos" className="text-light text-decoration-none">Productos</a></li>
-              <li><a href="#contacto" className="text-light text-decoration-none">Contacto</a></li>
-              <li><a href="#faq" className="text-light text-decoration-none">Preguntas frecuentes</a></li>
+              <li>
+                <Link to="/" className="text-light text-decoration-none">Inicio</Link>
+                </li>
+              <li>
+                <Link to="/category" className="text-light text-decoration-none">Catalogo</Link>
+                </li>
+              <li>
+                <Link to="/login" className="text-light text-decoration-none">Sesion</Link>
+                </li>
+              <li>
+                <Link to="/contact" className="text-light text-decoration-none">Contacto</Link>
+                </li>
             </ul>
           </div>
 
@@ -33,7 +43,7 @@ const Footer = () => {
                   placeholder="Ingresa tu email"
                 />
               </div>
-              <button type="submit" className="btn btn-primary">Suscribirse</button>
+              <button type="submit" className="btn btn-primary decorative">Suscribirse</button>
             </form>
             <div>
               <a href="https://www.facebook.com" className="text-light me-3">

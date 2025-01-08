@@ -33,12 +33,12 @@ const ItemListContainer = () => {
     <>
       <CategoriesList />
       <div className='text-center mb-5'>
-        {/* <div className="jumbotron jumbotron-fluid">
+         <div className="jumbotron jumbotron-fluid">
           <div className="container-mdfluid text-center text-dark mx-3 my-5 p-4 bg-warning fw-bold">
-            <h1 className="display-md-4">STOCK COMPLETO</h1>
+            <h1 className="display-md-4">CATALOGO</h1>
             <p className="lead">Mira este increible catalogo lleno de componentes!</p>
           </div>
-        </div> */}
+        </div> 
         <ItemList products={products} />
       </div>
     </>

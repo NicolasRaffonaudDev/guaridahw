@@ -35,10 +35,10 @@ const CartView = () => {
         <div className="text-end mt-4">
           <h3 className="text-success">Total General: ${total.toFixed(2)}</h3>
           <div className="d-flex justify-content-end gap-2 mt-2">
-            <button className="btn btn-outline-danger" onClick={clearCart}>
+            <button className="btn btn-outline-danger decorative" onClick={clearCart}>
               Vaciar carrito
             </button>
-            <Link to="/checkout" className="btn btn-primary">
+            <Link to="/checkout" className="btn btn-primary decorative">
               Generar Orden
             </Link>
           </div>

@@ -41,13 +41,13 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
           <ItemCount stock={stock} onCountChange={setCount} />
           <div className="container p-4 d-flex flex-column justify-content-center">
             <div className="row mx-2 p-2">
-              <button onClick={handleAddToCart} className="btn btn-primary d-flex align-items-center">
+              <button onClick={handleAddToCart} className="btn btn-primary d-flex align-items-center decorative">
                 <i className="fas fa-shopping-cart me-4"></i>
                 Añadir al carrito
               </button>
             </div>
             <div className="row mx-2 p-2">
-              <Link to="/cart" className="btn btn-primary d-flex align-items-center">
+              <Link to="/cart" className="btn btn-primary d-flex align-items-center decorative">
                 <i className="fas fa-eye me-4"></i>
                 Ver Carrito
               </Link>

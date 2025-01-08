@@ -36,12 +36,6 @@ function CategoriesList() {
           ))}
         </div>
       </div>
-      <div className="jumbotron jumbotron-fluid">
-          <div className="container-mdfluid text-center text-dark mx-3 my-5 p-4 bg-warning fw-bold">
-            <h1 className="display-md-4">STOCK COMPLETO</h1>
-            <p className="lead">Mira este increible catalogo lleno de componentes!</p>
-          </div>
-      </div>
     </>
   )
 }
