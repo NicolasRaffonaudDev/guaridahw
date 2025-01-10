@@ -1,4 +1,7 @@
 import "./Carousel.css";
+import slide1 from "../../assets/pcgamingprueba5.jpg";
+import slide2 from "../../assets/pcgamingprueba1.jpg";
+import slide3 from "../../assets/pcgamingprueba3.jpg";
 
 function Carousel() {
   return (
@@ -11,21 +14,21 @@ function Carousel() {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="3000">
-            <img src="../src/assets/pcgamingprueba5.jpg" className="d-block w-100" alt="slide1" />
+            <img src={slide1} className="d-block w-100" alt="slide1" />
             <div className="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
             </div>
           </div>
           <div className="carousel-item" data-bs-interval="3000">
-            <img src="../src/assets/pcgamingprueba1.jpg" className="d-block w-100" alt="slide2" />
+            <img src={slide2} className="d-block w-100" alt="slide2" />
             <div className="carousel-caption d-none d-md-block">
               <h5>Second slide label</h5>
               <p>Some representative placeholder content for the second slide.</p>
             </div>
           </div>
           <div className="carousel-item" data-bs-interval="3000">
-            <img src="../src/assets/pcgamingprueba3.jpg" className="d-block w-100" alt="slide3" />
+            <img src={slide3} className="d-block w-100" alt="slide3" />
             <div className="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>
               <p>Some representative placeholder content for the third slide.</p>

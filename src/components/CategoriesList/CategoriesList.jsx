@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom"
+import imgProcessor from "../../assets/procesadores-logo.webp";
+import imgMotherboard from "../../assets/placaMadre-logo.webp";
+import imgGraphicsCard from "../../assets/gpu-logo-1.webp";
+import imgMemory from "../../assets/ram-logo-1.webp";
+import imgStorage from "../../assets/ssd-logo.webp";
+import imgMonitor from "../../assets/monitor-logo.webp";
+import imgPowerSupply from "../../assets/icon-power-supply-2.webp";
+import imgCooling from "../../assets/icon-cooling.webp";
+import imgCase from "../../assets/icon-case-2.jpg";
 
 const categories = [
-  { id: 1, name: 'processor', img: "../src/assets/procesadores-logo.webp" },
-  { id: 2, name: 'motherboard', img: "../src/assets/placaMadre-logo.webp" },
-  { id: 3, name: 'graphics_card', img: "../src/assets/gpu-logo-1.webp" },
-  { id: 4, name: 'memory', img: "../src/assets/ram-logo-1.webp" },
-  { id: 5, name: 'storage', img: "../src/assets/ssd-logo.webp" },
-  { id: 6, name: 'monitor', img: "../src/assets/monitor-logo.webp" },
-  { id: 7, name: 'power_supply', img: "../src/assets/icon-power-supply-2.webp" },
-  { id: 8, name: 'cooling', img: "../src/assets/icon-cooling.webp" },
-  { id: 9, name: 'case', img: "../src/assets/icon-case-2.jpg" },
+  { id: 1, name: 'processor', img: imgProcessor },
+  { id: 2, name: 'motherboard', img: imgMotherboard },
+  { id: 3, name: 'graphics_card', img: imgGraphicsCard },
+  { id: 4, name: 'memory', img: imgMemory },
+  { id: 5, name: 'storage', img: imgStorage },
+  { id: 6, name: 'monitor', img: imgMonitor },
+  { id: 7, name: 'power_supply', img: imgPowerSupply },
+  { id: 8, name: 'cooling', img: imgCooling },
+  { id: 9, name: 'case', img: imgCase },
 ]
 
 function CategoriesList() {
