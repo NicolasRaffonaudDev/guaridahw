@@ -15,6 +15,7 @@ import Checkout from "./components/Checkout/Checkout";
 import Footer from "./components/Footer/Footer";
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
+import ProductCard from "./components/ProductCard/ProductCard";
 
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
 
@@ -63,6 +64,11 @@ function App() {
           </Routes>
         </main>
 
+              {/* pruebas de optimizacion */}
+
+              {/* <ProductCard /> */}
+
+              
         <Footer />
         <ToastContainer />
         </div>
