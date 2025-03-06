@@ -15,7 +15,6 @@ import Checkout from "./components/Checkout/Checkout";
 import Footer from "./components/Footer/Footer";
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
-import ProductCard from "./components/ProductCard/ProductCard";
 
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
 
@@ -63,11 +62,6 @@ function App() {
             <Route path="*" element={<h1>:( 404 Not found</h1>} />
           </Routes>
         </main>
-
-              {/* pruebas de optimizacion */}
-
-              {/* <ProductCard /> */}
-
               
         <Footer />
         <ToastContainer />

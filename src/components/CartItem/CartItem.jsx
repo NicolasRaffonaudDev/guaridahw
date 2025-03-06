@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "./CartItem.css"
 
 const CartItem = ({ id, name, quantity, price, stock, img }) => {
-  const { addToCart, removeFromCart, deleteFromCart } = useContext(CartContext);
+  const { addToCart, updateCartItem } = useContext(CartContext);
 
   return (
     <div className="card mb-3 shadow-sm">
@@ -49,7 +49,7 @@ const CartItem = ({ id, name, quantity, price, stock, img }) => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Quitar una unidad al carrito"
-                onClick={() => removeFromCart(id)}
+                onClick={() => updateCartItem(id, "remove")}
               >
                 <FaMinus />
               </button>
@@ -58,7 +58,7 @@ const CartItem = ({ id, name, quantity, price, stock, img }) => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Eliminar producto del carrito"
-                onClick={() => deleteFromCart(id)}
+                onClick={() => updateCartItem(id, "delete")}
               >
                 <FaTrash />
               </button>

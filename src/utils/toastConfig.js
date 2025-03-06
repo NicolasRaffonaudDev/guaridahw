@@ -23,4 +23,19 @@ export const toastConfig = {
       pauseOnHover: true,
       draggable: true,
     },
+    successAlert : {
+        position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    style: {
+                        backgroundColor: '#4caf50',
+                        color: '#fff',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                    },
+    },
   };

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useAsync } from '../../hooks/useAsync';
 import { getProductById } from '../../services/firebase/firestore/products';
 import { FaSpinner } from "react-icons/fa";
+import useAsync from "../../hooks/useAsync";
 import ItemDetail from '../ItemDetail/ItemDetail';
 import CategoriesList from '../CategoriesList/CategoriesList';
 

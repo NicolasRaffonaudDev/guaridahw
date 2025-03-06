@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 
 const CartView = () => {
-  const { cartItems, clearCart } = useContext(CartContext);
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const { cartItems, clearCart, calculateTotal } = useContext(CartContext);
+  const total = calculateTotal();
 
   return (
     <div className="container my-5 bg-white opacity-85 pb-3">

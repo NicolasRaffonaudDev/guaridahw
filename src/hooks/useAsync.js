@@ -23,7 +23,7 @@ const useAsync = (asyncFunction, dependencies = [] ) => {
         data,
         loading,
         error
-    }
+    };
 };
 
 export default useAsync;
