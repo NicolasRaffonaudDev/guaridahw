@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
-import imgProcessor from "../../assets/procesadores-logo.webp";
-import imgMotherboard from "../../assets/placaMadre-logo.webp";
-import imgGraphicsCard from "../../assets/gpu-logo-1.webp";
-import imgMemory from "../../assets/ram-logo-1.webp";
-import imgStorage from "../../assets/ssd-logo.webp";
-import imgMonitor from "../../assets/monitor-logo.webp";
-import imgPowerSupply from "../../assets/icon-power-supply-2.webp";
-import imgCooling from "../../assets/icon-cooling.webp";
-import imgCase from "../../assets/icon-case-2.jpg";
+import imgProcessor from "../../assets/images/procesadores-logo.webp";
+import imgMotherboard from "../../assets/images/placaMadre-logo.webp";
+import imgGraphicsCard from "../../assets/images/gpu-logo-1.webp";
+import imgMemory from "../../assets/images/ram-logo-1.webp";
+import imgStorage from "../../assets/images/ssd-logo.webp";
+import imgMonitor from "../../assets/images/monitor-logo.webp";
+import imgPowerSupply from "../../assets/images/icon-power-supply-2.webp";
+import imgCooling from "../../assets/images/icon-cooling.webp";
+import imgCase from "../../assets/images/icon-case-2.jpg";
 
 const categories = [
   { id: 1, name: 'processor', img: imgProcessor },

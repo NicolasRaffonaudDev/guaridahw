@@ -34,7 +34,6 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <CategoriesList />
       <div className='text-center mb-5'>
         <div className="jumbotron jumbotron-fluid">
           <div className="container-mdfluid text-center text-dark mx-3 my-5 p-4 bg-warning fw-bold">

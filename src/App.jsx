@@ -3,18 +3,16 @@ import { Routes, BrowserRouter, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
-import Carousel from "./components/Carousel/Carousel";
-import CategoriesList from "./components/CategoriesList/CategoriesList";
-import Featured from "./components/ProductsList/ProductsList";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import Login from "./components/Login/Login";
-import Contact from "./components/Contact/Contact";
-import CartView from "./components/CartView/CartView";
-import Checkout from "./components/Checkout/Checkout";
 import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home";
+import Category from "./pages/Category";
+import Cart from "./pages/Cart";
+import CheckoutPage from "./pages/CheckoutPage";
+import LoginPage from "./pages/LoginPage";
+import ContactPage from "./pages/ContactPage";
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
+import ItemDetailPage from "./pages/ItemDetailPage";
 
 /* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
 
@@ -37,36 +35,31 @@ function App() {
     <CartProvider>
       <BrowserRouter>
 
-      <div className="d-flex flex-column min-vh-100">
-        <NavBar title="Guarida del HardWare" />
+        <div className="d-flex flex-column min-vh-100">
+          <NavBar title="Guarida del HardWare" />
 
-        <main className="flex-grow-1">
-          <Routes>
-            {/* Rutas principales */}
-            <Route exact path="/" element={<Carousel />} />
-            <Route exact path="/category" element={<CategoriesList />} />
+          <main className="flex-grow-1">
+            <Routes>
 
-            {/* Rutas de Productos */}
-            <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
-            <Route exact path="/detail/:productId" element={<ItemDetailContainer />} />
+              <Route exact path="/" element={<Home />} />
+              <Route path="/category/:categoryId?" element={<Category />} />
+              <Route path="/detail/:productId" element={<ItemDetailPage />} />
 
-            {/* Otras secciones */}
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/contact" element={<Contact />} />
+              <Route exact path="/login" element={<LoginPage />} />
+              <Route exact path="/contact" element={<ContactPage />} />
 
-            {/* Rutas de Carrito y Checkout */}
-            <Route exact path="/cart" element={<CartView />} />
-            <Route exact path="/checkout" element={<Checkout />} />
+              <Route exact path="/cart" element={<Cart />} />
+              <Route exact path="/checkout" element={<CheckoutPage />} />
 
-            {/* Ruta para página no encontrada */}
-            <Route path="*" element={<h1>:( 404 Not found</h1>} />
-          </Routes>
-        </main>
-              
-        <Footer />
-        <ToastContainer />
+              {/* Ruta para página no encontrada */}
+              <Route path="*" element={<h1>:( 404 Not found</h1>} />
+            </Routes>
+          </main>
+
+          <Footer />
         </div>
-        
+
+        <ToastContainer />
       </BrowserRouter>
     </CartProvider>
   );

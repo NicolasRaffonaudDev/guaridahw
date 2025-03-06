@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo-guaridaHw3.webp"
+import logo from "../../assets/images/logo-guaridaHw3.webp"
 import Cart from "../Cart/Cart";
 import "./NavBar.css"
 
