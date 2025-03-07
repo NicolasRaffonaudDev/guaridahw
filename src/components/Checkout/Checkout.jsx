@@ -1,82 +1,18 @@
 import { useState } from 'react';
-import { useCart } from '../../hooks/useCart';
-import { db } from '../../services/firebase';
-import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from 'firebase/firestore';
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import useCart from '../../hooks/useCart';
+import useOrder from '../../hooks/useOrder';
 
 const Checkout = () => {
   const { cartItems, cartCount, clearCart } = useCart();
+  const { createOrder, loading, orderCreated } = useOrder();
   const [buyer, setBuyer] = useState({ firstName: '', lastName: '', phone: '', address: '' });
-  const [loading, setLoading] = useState(false);
-  const [orderCreated, setOrderCreated] = useState(false);
 
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setBuyer((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const createOrder = async () => {
-    setLoading(true);
-    try {
-      const objOrder = {
-        buyer,
-        items: cartItems,
-        totalQuantity: cartCount,
-        total,
-        date: new Date(),
-      };
-
-      const ids = cartItems.map((item) => item.id);
-      const productRef = collection(db, 'products');
-      const productsFromFirestore = await getDocs(query(productRef, where(documentId(), 'in', ids)));
-      const { docs } = productsFromFirestore;
-
-      const outOfStock = [];
-      const batch = writeBatch(db);
-
-      docs.forEach((doc) => {
-        const dataDoc = doc.data();
-        const stockDB = dataDoc.stock;
-
-        const productInCart = cartItems.find((item) => item.id === doc.id);
-        const productQuantity = productInCart?.quantity;
-
-        if (stockDB >= productQuantity) {
-          batch.update(doc.ref, { stock: stockDB - productQuantity });
-        } else {
-          outOfStock.push({ id: doc.id, ...dataDoc });
-        }
-      });
-
-      if (outOfStock.length === 0) {
-        await batch.commit();
-        const orderRef = collection(db, 'orders');
-        const orderAdded = await addDoc(orderRef, objOrder);
-
-        toast.success('¡Compra realizada con éxito!', {
-          position: 'top-right',
-          autoClose: 3000,
-        });
-
-        clearCart();
-        setOrderCreated(true);
-      } else {
-        toast.error('Algunos productos están fuera de stock.', {
-          position: 'top-right',
-          autoClose: 3000,
-        });
-      }
-    } catch (error) {
-      toast.error('Error al crear la orden. Inténtalo nuevamente.', {
-        position: 'top-right',
-        autoClose: 3000,
-      });
-    } finally {
-      setLoading(false);
-    }
   };
 
   const confirmPurchase = () => {
@@ -91,7 +27,7 @@ const Checkout = () => {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        createOrder();
+        createOrder(cartItems, cartCount, total, buyer, clearCart);
         Swal.fire('¡Confirmado!', 'Tu orden está siendo procesada.', 'success');
       }
     });

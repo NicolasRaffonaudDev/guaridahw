@@ -4,6 +4,7 @@ import useProduct from "../hooks/useProduct";
 import ItemDetail from '../components/ItemDetail/ItemDetail';
 import CategoriesList from '../components/CategoriesList/CategoriesList';
 
+
 const ItemDetailPage = () => {
   const { productId } = useParams();
   const { product, loading, error } = useProduct(productId);

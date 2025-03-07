@@ -1,49 +1,34 @@
-import { useContext, useState, useEffect } from "react";
-import { CartContext } from "../../context/CartContext";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 import ItemCount from "../ItemCount/ItemCount";
 import ProductCard from "../ProductCard/ProductCard";
 
-
 const ItemDetail = ({ id, name, price, img, description, stock }) => {
-  const { addToCart } = useContext(CartContext);
   const [count, setCount] = useState(1);
+  const { handleAddToCart } = useCart();
 
   // Reiniciar count a 1 cuando cambie el producto
   useEffect(() => {
     setCount(1);
   }, [id]);
 
-  const handleAddToCart = () => {
-    if (count > stock) {
-      alert(`La cantidad solicitada excede el stock disponible de ${stock} unidades.`);
-      return;
-    }
-
-    const item = {
-      id,
-      name,
-      price,
-      img,
-      stock,  // importante para validar en el contexto
-      quantity: count,
-    };
-    addToCart(item);
-  };
+  const product = { id, name, price, img, description };
 
   return (
     <div className="container d-flex justify-content-center text-center p-5">
       <div key={id} className="card align-items-center text-center p-3 my-3" style={{ width: 600, height: 850 }}>
-        {/* <img src={img} style={{ width: 350, height: 350 }} alt={name} className="card-img-top mt-5" /> */}
         <div className="card-body fw-bold mt-5">
-          
-          <ProductCard product={{id, name, price, img, description}} />
+          <ProductCard product={product} />
 
           <h3 className="card-text text-dark">Quedan: {stock} unidades disponibles!</h3>
           <ItemCount stock={stock} onCountChange={setCount} />
           <div className="container p-4 d-flex flex-column justify-content-center">
             <div className="row mx-2 p-2">
-              <button onClick={handleAddToCart} className="btn btn-primary d-flex align-items-center decorative">
+              <button
+                onClick={() => handleAddToCart(product, count, stock)}
+                className="btn btn-primary d-flex align-items-center decorative"
+              >
                 <i className="fas fa-shopping-cart me-4"></i>
                 Añadir al carrito
               </button>
