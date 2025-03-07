@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import ItemCount from "../ItemCount/ItemCount";
 import ProductCard from "../ProductCard/ProductCard";
 
 const ItemDetail = ({ id, name, price, img, description, stock }) => {
   const [count, setCount] = useState(1);
-  const { handleAddToCart } = useCart();
+  const { handleAddToCart, cartCount } = useCart();
 
   // Reiniciar count a 1 cuando cambie el producto
   useEffect(() => {
@@ -30,6 +31,11 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
 
           <h3 className="card-text text-dark">Quedan: {stock} unidades disponibles!</h3>
           <ItemCount stock={stock} onCountChange={setCount} />
+          {/* Indicador del carrito */}
+          <div className="d-flex align-items-center justify-content-center gap-1 mt-2">
+            <FaShoppingCart size={24} className="text-warning" />
+            <span className="badge bg-danger rounded-pill">{cartCount}</span>
+          </div>
           <div className="container p-4 d-flex flex-column justify-content-center">
             <div className="row mx-2 p-2">
               <button

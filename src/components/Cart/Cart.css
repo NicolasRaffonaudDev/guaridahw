@@ -1,0 +1,17 @@
+.cart-badge {
+    font-size: 0.75rem; /* Tamaño más pequeño */
+    padding: 0.25rem 0.5rem; /* Padding reducido */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.cart-icon-animate {
+    animation: bounce 0.5s ease-in-out;
+}

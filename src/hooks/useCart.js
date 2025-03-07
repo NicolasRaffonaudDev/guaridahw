@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 const useCart = () => {
-  const { cartItems, addToCart, updateCartItem, clearCart, calculateTotal } = useContext(CartContext);
+  const { cartItems, addToCart, updateCartItem, clearCart, calculateTotal, cartCount } = useContext(CartContext);
 
   // Función para manejar la adición de productos al carrito
   const handleAddToCart = (product, quantity, stock) => {
@@ -17,7 +17,7 @@ const useCart = () => {
     addToCart(itemToAdd); // Llama a addToCart con el objeto preparado
   };
 
-  return { cartItems, addToCart, updateCartItem, clearCart, calculateTotal, handleAddToCart };
+  return { cartItems, addToCart, updateCartItem, clearCart, calculateTotal, handleAddToCart, cartCount };
 };
 
 export default useCart;

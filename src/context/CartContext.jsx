@@ -28,39 +28,39 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = (item) => {
         if (!item || !item.id || !item.name) {
-            showInfoToast("El producto no es válido.");
-            return;
+          showInfoToast("El producto no es válido.");
+          return;
         }
-
+      
         // Aseguramos que quantity sea un número
         item.quantity = Number(item.quantity) || 1;
-
+      
         setCartItems((prevItems) => {
-            const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
-
-            if (existingItem) {
-                const newQuantity = existingItem.quantity + item.quantity;
-                const quantityToAdd = Math.min(newQuantity, item.stock || Infinity);
-
-                if (quantityToAdd > existingItem.quantity) {
-                    const updatedItems = updateExistingItem(prevItems, item, quantityToAdd);
-                    setCartCount((prevCount) => prevCount + (quantityToAdd - existingItem.quantity));
-                    showSuccessToast(`¡${item.name} añadido al carrito!`);
-                    return updatedItems;
-                } else {
-                    showInfoToast(`Ya alcanzaste el stock máximo de ${item.name}`);
-                    return prevItems;
-                }
+          const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
+      
+          if (existingItem) {
+            const newQuantity = existingItem.quantity + item.quantity;
+            const quantityToAdd = Math.min(newQuantity, item.stock || Infinity);
+      
+            if (quantityToAdd > existingItem.quantity) {
+              const updatedItems = updateExistingItem(prevItems, item, quantityToAdd);
+              setCartCount((prevCount) => prevCount + (quantityToAdd - existingItem.quantity));
+              showSuccessToast(`¡Se agregaron ${item.quantity} unidades de ${item.name} al carrito!`); // Notificación más descriptiva
+              return updatedItems;
             } else {
-                const quantityToAdd = Math.min(item.quantity, item.stock || Infinity);
-                setCartCount((prevCount) => prevCount + quantityToAdd);
-                showSuccessToast(`¡${item.name} añadido al carrito!`);
-                return addNewItem(prevItems, item, quantityToAdd);
+              showInfoToast(`Ya alcanzaste el stock máximo de ${item.name} (${item.stock} unidades).`); // Notificación más descriptiva
+              return prevItems;
             }
+          } else {
+            const quantityToAdd = Math.min(item.quantity, item.stock || Infinity);
+            setCartCount((prevCount) => prevCount + quantityToAdd);
+            showSuccessToast(`¡Se agregaron ${quantityToAdd} unidades de ${item.name} al carrito!`); // Notificación más descriptiva
+            return addNewItem(prevItems, item, quantityToAdd);
+          }
         });
-    };
-
-    const updateCartItem = (itemId, action) => {
+      };
+      
+      const updateCartItem = (itemId, action) => {
         setCartItems((prevItems) => {
           const itemToUpdate = prevItems.find((item) => item.id === itemId); // Encontramos el producto a actualizar
       
@@ -94,14 +94,15 @@ export const CartProvider = ({ children }) => {
           return updatedItems;
         });
       
-        // Muestra una notificación según la acción
-        showInfoToast(
-          action === "add"
-            ? "Se ha sumado correctamente"
-            : action === "remove"
-            ? "Se ha restado correctamente"
-            : "Producto eliminado correctamente"
-        );
+        // Muestra una notificación más descriptiva según la acción
+        const itemName = cartItems.find((item) => item.id === itemId)?.name || "el producto";
+        if (action === "add") {
+          showSuccessToast(`¡Se agregó 1 unidad de ${itemName} al carrito!`);
+        } else if (action === "remove") {
+          showInfoToast(`¡Se eliminó 1 unidad de ${itemName} del carrito!`);
+        } else if (action === "delete") {
+          showInfoToast(`¡${itemName} fue eliminado completamente del carrito!`);
+        }
       };
 
     const clearCart = () => {
