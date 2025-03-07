@@ -13,6 +13,13 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
     setCount(1);
   }, [id]);
 
+  // Asegurarse de que count no sea mayor que el stock
+  useEffect(() => {
+    if (count > stock) {
+      setCount(stock);
+    }
+  }, [count, stock]);
+
   const product = { id, name, price, img, description };
 
   return (

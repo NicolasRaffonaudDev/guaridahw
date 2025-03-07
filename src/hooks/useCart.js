@@ -2,22 +2,22 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 const useCart = () => {
-  const { addToCart } = useContext(CartContext);
+  const { cartItems, addToCart, updateCartItem, clearCart, calculateTotal } = useContext(CartContext);
 
-  const handleAddToCart = (item, count, stock) => {
-    if (count > stock) {
-      alert(`La cantidad solicitada excede el stock disponible de ${stock} unidades.`);
-      return;
-    }
-
-    const cartItem = {
-      ...item,
-      quantity: count,
+  // Función para manejar la adición de productos al carrito
+  const handleAddToCart = (product, quantity, stock) => {
+    const itemToAdd = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+      stock: stock,
+      img: product.img,
     };
-    addToCart(cartItem);
+    addToCart(itemToAdd); // Llama a addToCart con el objeto preparado
   };
 
-  return { handleAddToCart };
+  return { cartItems, addToCart, updateCartItem, clearCart, calculateTotal, handleAddToCart };
 };
 
 export default useCart;

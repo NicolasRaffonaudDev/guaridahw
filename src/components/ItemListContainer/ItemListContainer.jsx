@@ -3,7 +3,6 @@ import { getProducts } from '../../services/firebase/firestore/products';
 import useAsync from '../../hooks/useAsync';
 import { FaSpinner } from "react-icons/fa";
 import ItemList from '../ItemList/ItemList';
-import CategoriesList from '../CategoriesList/CategoriesList';
 
 const ItemListContainer = () => {
   const { categoryId } = useParams();

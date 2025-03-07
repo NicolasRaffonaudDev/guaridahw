@@ -1,4 +1,3 @@
-// CartContext.js
 import { createContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -6,83 +5,104 @@ import { toastConfig } from '../utils/toastConfig';
 
 // Creamos el contexto
 export const CartContext = createContext();
+
+// Funciones de notificación
+const showSuccessToast = (message) => toast.success(message, toastConfig.success);
+const showInfoToast = (message) => toast.info(message, toastConfig.info);
+const showSuccessAlert = (message) => toast.success(message, toastConfig.successAlert);
+
 // Creamos el proveedor del contexto
 export const CartProvider = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartItems, setCartItems] = useState([]);
 
+    const updateExistingItem = (prevItems, item, quantityToAdd) => {
+        return prevItems.map((cartItem) =>
+            cartItem.id === item.id ? { ...cartItem, quantity: quantityToAdd } : cartItem
+        );
+    };
+
+    const addNewItem = (prevItems, item, quantityToAdd) => {
+        return [...prevItems, { ...item, quantity: quantityToAdd, img: item.img }];
+    };
+
     const addToCart = (item) => {
+        if (!item || !item.id || !item.name) {
+            showInfoToast("El producto no es válido.");
+            return;
+        }
+
+        // Aseguramos que quantity sea un número
+        item.quantity = Number(item.quantity) || 1;
+
         setCartItems((prevItems) => {
-            // Verificamos si el producto ya existe en el carrito
             const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
 
             if (existingItem) {
-                // Calculamos la cantidad actualizada, respetando el stock disponible
-                const existingQuantity = Number(existingItem.quantity);
-                const quantityToAdd = Math.min(existingQuantity + (item.quantity || 0), item.stock || Infinity);
+                const newQuantity = existingItem.quantity + item.quantity;
+                const quantityToAdd = Math.min(newQuantity, item.stock || Infinity);
 
-                // Validamos si la nueva cantidad supera el stock
-                if (quantityToAdd > existingQuantity) {
-                    const updatedItems = prevItems.map((cartItem) =>
-                        cartItem.id === item.id ? { ...cartItem, quantity: quantityToAdd } : cartItem
-                    );
-
-                    // Actualizamos el contador global según el incremento
-                    setCartCount(prevCount => prevCount + (quantityToAdd - existingQuantity));
-
-                    // Notificación exitosa
-                    toast.success(`¡${item.name} añadido al carrito!`, toastConfig.success);
+                if (quantityToAdd > existingItem.quantity) {
+                    const updatedItems = updateExistingItem(prevItems, item, quantityToAdd);
+                    setCartCount((prevCount) => prevCount + (quantityToAdd - existingItem.quantity));
+                    showSuccessToast(`¡${item.name} añadido al carrito!`);
                     return updatedItems;
-
                 } else {
-                    // Si ya se alcanzó el límite de stock
-                    toast.info(`Ya alcanzaste el stock máximo de ${item.name}`, toastConfig.info);
+                    showInfoToast(`Ya alcanzaste el stock máximo de ${item.name}`);
                     return prevItems;
                 }
             } else {
-                // Si no existe, lo agregamos respetando el stock
                 const quantityToAdd = Math.min(item.quantity, item.stock || Infinity);
                 setCartCount((prevCount) => prevCount + quantityToAdd);
-
-                // Notificación exitosa
-                toast.success(`¡${item.name} añadido al carrito!`, toastConfig.success
-                );
-                return [...prevItems, {
-                    ...item, quantity: quantityToAdd, img: item.img
-                }];
+                showSuccessToast(`¡${item.name} añadido al carrito!`);
+                return addNewItem(prevItems, item, quantityToAdd);
             }
         });
     };
 
     const updateCartItem = (itemId, action) => {
         setCartItems((prevItems) => {
-            const updatedItems = prevItems.map((item) => {
-                if (item.id === itemId) {
-                    if (action === "remove") {
-                        return {
-                            ...item, quantity: Math.max(item.quantity - 1, 0)
-                        };
-                    } else if (action === "delete") {
-                        return null;
-                    }
+          const itemToUpdate = prevItems.find((item) => item.id === itemId); // Encontramos el producto a actualizar
+      
+          const updatedItems = prevItems
+            .map((item) => {
+              if (item.id === itemId) {
+                if (action === "add") {
+                  return { ...item, quantity: Math.min(item.quantity + 1, item.stock) }; // Aumenta la cantidad en 1
+                } else if (action === "remove") {
+                  return { ...item, quantity: Math.max(item.quantity - 1, 0) }; // Reduce la cantidad en 1
+                } else if (action === "delete") {
+                  return null; // Elimina el producto
                 }
-                return item;
+              }
+              return item;
             })
-                .filter(Boolean); // Elimina los elementos null
-
-            setCartCount((prevCount) =>
-                action === "remove" ? Math.max(prevCount - 1, 0) : prevCount - 1
-            );
-            return updatedItems;
+            .filter(Boolean); // Elimina los elementos null
+      
+          // Actualiza el contador del carrito
+          setCartCount((prevCount) => {
+            if (action === "add") {
+              return prevCount + 1; // Aumenta el contador en 1
+            } else if (action === "remove") {
+              return Math.max(prevCount - 1, 0); // Reduce el contador en 1
+            } else if (action === "delete") {
+              return prevCount - (itemToUpdate?.quantity || 0); // Resta la cantidad del producto eliminado
+            }
+            return prevCount;
+          });
+      
+          return updatedItems;
         });
-
-        toast.info(
-            action === "remove"
-                ? "Producto eliminado del carrito"
-                : "Producto eliminado completamente"
-            , toastConfig.info
+      
+        // Muestra una notificación según la acción
+        showInfoToast(
+          action === "add"
+            ? "Se ha sumado correctamente"
+            : action === "remove"
+            ? "Se ha restado correctamente"
+            : "Producto eliminado correctamente"
         );
-    };
+      };
 
     const clearCart = () => {
         Swal.fire({
@@ -98,16 +118,14 @@ export const CartProvider = ({ children }) => {
             if (result.isConfirmed) {
                 setCartItems([]);
                 setCartCount(0);
-
-                // Notificación personalizada con Toastify
-                toast.success('¡Carrito vaciado con éxito!', toastConfig.successAlert);
+                showSuccessAlert('¡Carrito vaciado con éxito!');
             }
         });
-    }
+    };
 
     const calculateTotal = () => {
-        return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-      };
+        return cartItems.reduce((acc, item) => acc + (item.price || 0) * (item.quantity || 0), 0);
+    };
 
     return (
         <CartContext.Provider value={{ cartCount, cartItems, addToCart, updateCartItem, clearCart, calculateTotal }}>

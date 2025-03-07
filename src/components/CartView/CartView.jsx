@@ -3,19 +3,21 @@ import { CartContext } from "../../context/CartContext";
 import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const CartView = () => {
   const { cartItems, clearCart, calculateTotal } = useContext(CartContext);
+  const { updateCartItem } = useCart(); // Obtenemos updateCartItem desde useCart
   const total = calculateTotal();
 
   return (
     <div className="container my-5 bg-white opacity-85 pb-3">
-      
       <div className="row g-3">
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div className="col-md-12" key={item.id}>
-              <CartItem {...item} />
+              {/* Pasamos updateCartItem como prop a CartItem */}
+              <CartItem {...item} updateCartItem={updateCartItem} />
             </div>
           ))
         ) : (
