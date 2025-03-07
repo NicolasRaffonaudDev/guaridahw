@@ -1,15 +1,7 @@
 import { createContext, useState } from 'react';
-import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
-import { toastConfig } from '../utils/toastConfig';
+import { showConfirmationDialog, showInfoToast, showSuccessAlert, showSuccessToast } from '../utils/notifications';
 
-// Creamos el contexto
 export const CartContext = createContext();
-
-// Funciones de notificación
-const showSuccessToast = (message) => toast.success(message, toastConfig.success);
-const showInfoToast = (message) => toast.info(message, toastConfig.info);
-const showSuccessAlert = (message) => toast.success(message, toastConfig.successAlert);
 
 // Creamos el proveedor del contexto
 export const CartProvider = ({ children }) => {
@@ -106,16 +98,12 @@ export const CartProvider = ({ children }) => {
       };
 
     const clearCart = () => {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: 'Se eliminarán todos los productos del carrito.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, vaciar',
-            cancelButtonText: 'Cancelar',
-        }).then((result) => {
+        showConfirmationDialog(
+          "¿Estás seguro?",
+          "Se eliminarán todos los productos del carrito.",
+          "Sí, vaciar",
+          "Cancelar"
+        ).then((result) => {
             if (result.isConfirmed) {
                 setCartItems([]);
                 setCartCount(0);

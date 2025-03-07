@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ItemCount = ({ stock, onCountChange }) => {
     const [count, setCount] = useState(1);
+
+    useEffect(() => {
+        if (count > stock) {
+            setCount(stock);
+            onCountChange(stock);
+        }
+    }, [stock]); // <-- Escuchar cambios en stock
 
     const increment = () => {
         if (count < stock) {  // Incrementa solo si count es menor que stock

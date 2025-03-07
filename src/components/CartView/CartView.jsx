@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
+import { CartContext } from "../../context/CartContext";
+import { showConfirmationDialog, showSuccessSwal } from "../../utils/notifications";
 import CartItem from "../CartItem/CartItem";
 import useCart from "../../hooks/useCart";
-import Swal from "sweetalert2"; // Importamos SweetAlert2 para el mensaje de confirmación
 
 const CartView = () => {
   const { cartItems, clearCart, calculateTotal } = useContext(CartContext);
@@ -12,19 +12,15 @@ const CartView = () => {
   const total = calculateTotal();
 
   const handleClearCart = () => {
-    Swal.fire({
-      title: "¿Estás seguro?",
-      text: "Se eliminarán todos los productos del carrito.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, vaciar carrito",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
+    showConfirmationDialog(
+      "¿Estás seguro?",
+      "Se eliminarán todos los productos del carrito.",
+      "Sí, vaciar carrito",
+      "Cancelar"
+    ).then((result) => {
       if (result.isConfirmed) {
         clearCart(); // Vaciar el carrito si el usuario confirma
-        Swal.fire("¡Carrito vaciado!", "Tu carrito está vacío.", "success");
+        showSuccessSwal("¡Carrito vaciado!", "Tu carrito está vacío.");
       }
     });
   };

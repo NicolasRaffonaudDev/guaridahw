@@ -22,6 +22,15 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
   }, [count, stock]);
 
   const product = { id, name, price, img, description };
+  const isOutOfStock = stock === 0; // verifica si no hay stock
+
+  const handleAddToCartClick = () => {
+    if (count > stock) {
+      alert("¡Stock insuficiente! Actualiza la página para ver disponibilidad real.");
+      return;
+    }
+    handleAddToCart(product, count, stock);
+  };
 
   return (
     <div className="container d-flex justify-content-center text-center p-5">
@@ -39,11 +48,12 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
           <div className="container p-4 d-flex flex-column justify-content-center">
             <div className="row mx-2 p-2">
               <button
-                onClick={() => handleAddToCart(product, count, stock)}
-                className="btn btn-primary d-flex align-items-center decorative"
+                onClick={handleAddToCartClick}
+                className={`btn btn-primary d-flex align-items-center decorative ${isOutOfStock ? "disabled" : ""}`}
+                disabled={isOutOfStock} // desabilita si no hay stock
               >
                 <i className="fas fa-shopping-cart me-4"></i>
-                Añadir al carrito
+                {isOutOfStock ? "Sin Stock" : "Añadir al carrito"}
               </button>
             </div>
             <div className="row mx-2 p-2">

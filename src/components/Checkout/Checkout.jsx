@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Swal from 'sweetalert2';
+import { showConfirmationDialog, showSuccessSwal } from '../../utils/notifications';
 import useCart from '../../hooks/useCart';
 import useOrder from '../../hooks/useOrder';
 
@@ -16,19 +16,15 @@ const Checkout = () => {
   };
 
   const confirmPurchase = () => {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: '¿Deseas completar tu compra?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, completar compra',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
+    showConfirmationDialog(
+      "¿Estás seguro?",
+      "¿Deseas completar tu compra?",
+      "Sí, completar compra",
+      "Cancelar"
+    ).then((result) => {
       if (result.isConfirmed) {
         createOrder(cartItems, cartCount, total, buyer, clearCart);
-        Swal.fire('¡Confirmado!', 'Tu orden está siendo procesada.', 'success');
+        showSuccessSwal("¡Confirmado!", "Tu orden está siendo procesada.");
       }
     });
   };
