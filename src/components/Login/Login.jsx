@@ -1,27 +1,15 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/firebase";
-import "./Login.css"
+import useAuth from "../../hooks/useAuth";
+import "./Login.css";
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const { login, error, success } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Limpia mensajes anteriores
-    setSuccess(false);
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setSuccess(true); // Indica que el login fue exitoso
-      console.log("Login exitoso");
-    } catch (err) {
-      setError("Error al iniciar sesión. Revisa tus credenciales.");
-      console.error(err);
-    }
+    await login(email, password);
   };
 
   return (
@@ -58,6 +46,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;
