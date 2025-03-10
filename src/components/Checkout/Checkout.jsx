@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { showConfirmationDialog, showSuccessSwal } from '../../utils/notifications';
 import useCart from '../../hooks/useCart';
 import useOrder from '../../hooks/useOrder';
+import { FaSpinner } from 'react-icons/fa';
 
 const Checkout = () => {
   const { cartItems, cartCount, clearCart } = useCart();
@@ -30,7 +31,15 @@ const Checkout = () => {
   };
 
   if (loading) {
-    return <h1 className="text-center mt-5">Se está generando la orden...</h1>;
+    return (
+      <div className="d-flex flex-column align-items-center justify-content-center vh-100 text-center bg-light">
+        <FaSpinner className="text-primary mb-4" style={{ fontSize: "4rem", animation: "spin 1s linear infinite" }} />
+        <h1 className="text-primary">Cargando...</h1>
+        <p className="text-muted mt-3">
+          Por favor, espera un momento mientras cargamos la orden.
+        </p>
+      </div>
+    )
   }
 
   if (orderCreated) {

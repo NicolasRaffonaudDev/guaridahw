@@ -1,5 +1,5 @@
 body {
-    background-image: url(../src/assets/geometry.webp);
+    background-image: url(../src/assets/images/geometry.webp);
     background-size: cover; /* La imagen cubre todo el área visible */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-attachment: fixed; /* Fija la imagen al viewport */

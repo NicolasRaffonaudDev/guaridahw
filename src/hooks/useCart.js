@@ -1,23 +1,31 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { toast } from "react-toastify";
 
 const useCart = () => {
-  const { cartItems, addToCart, updateCartItem, clearCart, calculateTotal, cartCount } = useContext(CartContext);
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error("useCart debe usarse dentro de un CartProvider");
+  }
 
   // Función para manejar la adición de productos al carrito
   const handleAddToCart = (product, quantity, stock) => {
-    const itemToAdd = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
+    if (quantity > stock) {
+      toast.error(`Solo hay ${stock} unidades disponibles`);
+      return
+    }
+    context.addToCart({
+      ...product,
       quantity: quantity,
-      stock: stock,
-      img: product.img,
-    };
-    addToCart(itemToAdd); // Llama a addToCart con el objeto preparado
+      stock: stock
+    });
   };
 
-  return { cartItems, addToCart, updateCartItem, clearCart, calculateTotal, handleAddToCart, cartCount };
+  return {
+    ...context,
+    handleAddToCart
+  };
 };
 
 export default useCart;

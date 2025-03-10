@@ -31,6 +31,8 @@ function CategoriesList() {
               <div className="card text-center">
                 <Link to={`/category/${category.name}`}>
                   <img
+                    loading="lazy"
+                    decoding="async"
                     className="card-img-center img-fluid"
                     src={category.img}
                     alt={category.name}

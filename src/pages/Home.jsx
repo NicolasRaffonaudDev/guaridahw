@@ -1,10 +1,11 @@
 import Carousel from '../components/Carousel/Carousel'
+import CategoriesList from '../components/CategoriesList/CategoriesList'
 
 const Home = () => {
   return (
     <div>
-        <h1>Bienvenidos a GuaridaHw</h1>
         <Carousel />
+        <CategoriesList />
     </div>
     
   )

@@ -59,6 +59,7 @@ const useOrder = () => {
         });
       }
     } catch (error) {
+      console.error('Error al crear la orden. Intentalo nuevamente.')
       toast.error('Error al crear la orden. Inténtalo nuevamente.', {
         position: 'top-right',
         autoClose: 3000,

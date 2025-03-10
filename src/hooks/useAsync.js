@@ -6,18 +6,23 @@ const useAsync = (asyncFunction, dependencies = [] ) => {
     const [error, setError] = useState(null);
 
     useEffect(()=> {
+        let isMounted = true;
         (async () => {
             try {
                 setLoading(true);
                 const result = await asyncFunction();
-                setData(result);
+                if (isMounted)
+                    setData(result); // Solo actualiza si el componente está montado
             } catch (error) {
-                setError(error);
+                if (isMounted)
+                    setError(error);
             } finally {
-                setLoading(false);
+                if (isMounted)
+                    setLoading(false);
             }
             })();
-            }, dependencies);
+            return () => { isMounted = false }; //Cleanup
+            }, [...dependencies]);
 
     return {
         data,

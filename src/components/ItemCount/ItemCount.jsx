@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 const ItemCount = ({ stock, onCountChange }) => {
     const [count, setCount] = useState(1);
 
+    // Sincronizar count cuando el stock cambie
+    useEffect(() => {
+        if (count > stock) {
+            const newCount = Math.min(count, stock);
+            setCount(newCount);
+            onCountChange(newCount); // Notificar al padre
+        }
+    }, [stock]); // <-- Escuchar cambios en stock
+
     useEffect(() => {
         if (count > stock) {
             setCount(stock);

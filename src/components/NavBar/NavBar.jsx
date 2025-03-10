@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo-guaridaHw3.webp"
 import Cart from "../Cart/Cart";
 import "./NavBar.css"
+import useCart from '../../hooks/useCart';
 
 function Nav({ title }) {
-  const { cartCount } = useContext(CartContext); // Accedemos al estado del carrito
+  const { cartCount } = useCart(); // Accedemos al estado del carrito
 
   return (
     <div>

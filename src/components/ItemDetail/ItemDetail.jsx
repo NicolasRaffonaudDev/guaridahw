@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import ItemCount from "../ItemCount/ItemCount";
 import ProductCard from "../ProductCard/ProductCard";
+import { showErrorToast } from "../../utils/notifications";
 
 const ItemDetail = ({ id, name, price, img, description, stock }) => {
   const [count, setCount] = useState(1);
@@ -14,32 +15,19 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
     setCount(1);
   }, [id]);
 
-  // Asegurarse de que count no sea mayor que el stock
-  useEffect(() => {
-    if (count > stock) {
-      setCount(stock);
-    }
-  }, [count, stock]);
-
-  const product = { id, name, price, img, description };
-  const isOutOfStock = stock === 0; // verifica si no hay stock
 
   const handleAddToCartClick = () => {
-    if (count > stock) {
-      alert("¡Stock insuficiente! Actualiza la página para ver disponibilidad real.");
-      return;
-    }
-    handleAddToCart(product, count, stock);
+    handleAddToCart({ id, name, price, img }, count, stock);
   };
 
   return (
     <div className="container d-flex justify-content-center text-center p-5">
       <div key={id} className="card align-items-center text-center p-3 my-3" style={{ width: 600, height: 850 }}>
         <div className="card-body fw-bold mt-5">
-          <ProductCard product={product} />
+          <ProductCard product={{ id, name, price, img, description }} />
 
           <h3 className="card-text text-dark">Quedan: {stock} unidades disponibles!</h3>
-          <ItemCount stock={stock} onCountChange={setCount} />
+          <ItemCount stock={stock} onCountChange={setCount} initial={1}/>
           {/* Indicador del carrito */}
           <div className="d-flex align-items-center justify-content-center gap-1 mt-2">
             <FaShoppingCart size={24} className="text-warning" />
@@ -49,11 +37,11 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
             <div className="row mx-2 p-2">
               <button
                 onClick={handleAddToCartClick}
-                className={`btn btn-primary d-flex align-items-center decorative ${isOutOfStock ? "disabled" : ""}`}
-                disabled={isOutOfStock} // desabilita si no hay stock
+                className={`btn btn-primary d-flex align-items-center decorative ${stock === 0 ? "disabled" : ""}`}
+                disabled={stock === 0} // desabilita si no hay stock
               >
                 <i className="fas fa-shopping-cart me-4"></i>
-                {isOutOfStock ? "Sin Stock" : "Añadir al carrito"}
+                {stock === 0 ? "Sin Stock" : "Añadir al carrito"}
               </button>
             </div>
             <div className="row mx-2 p-2">
