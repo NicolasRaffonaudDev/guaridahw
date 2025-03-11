@@ -4,23 +4,9 @@ import CartItem from "../CartItem/CartItem";
 import useCart from "../../hooks/useCart";
 
 const CartView = () => {
-  /* const { cartItems, clearCart, calculateTotal } = useContext(CartContext); */
   const { cartItems, clearCart, calculateTotal, updateCartItem } = useCart(); // Obtenemos updateCartItem desde useCart
   const total = calculateTotal;
 
-  /* const handleClearCart = () => {
-    showConfirmationDialog(
-      "¿Estás seguro?",
-      "Se eliminarán todos los productos del carrito.",
-      "Sí, vaciar carrito",
-      "Cancelar"
-    ).then((result) => {
-      if (result.isConfirmed) {
-        clearCart(); // Vaciar el carrito si el usuario confirma
-        showSuccessSwal("¡Carrito vaciado!", "Tu carrito está vacío.");
-      }
-    });
-  }; */
 
   return (
     <div className="container my-5 bg-white opacity-85 pb-3">

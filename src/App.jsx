@@ -1,6 +1,6 @@
 // App.js
 import { Routes, BrowserRouter, Route } from "react-router-dom";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { CartProvider } from "./context/CartContext";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";

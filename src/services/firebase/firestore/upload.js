@@ -1,7 +1,7 @@
-/* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
+import { seedProducts } from "../../productList/productList";
 
     /* FUNCION PARA PUSHEAR ARRAYS A MI COLECCION DE FIRESTORE */
-    /*   useEffect(() => {
+   useEffect(() => {
       const uploadProducts = async () => {
         try {
           console.log("Cargando productos a Firestore...");
@@ -12,4 +12,4 @@
         }
       };
       uploadProducts();
-    }, []); */
+    }, []);
