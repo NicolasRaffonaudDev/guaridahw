@@ -5,7 +5,7 @@
     transition: transform 0.2s;
     width: 100%;
     max-width: 300px;
-    margin: 10px;
+    margin: 0 auto;
   }
   
   .product-card:hover {

@@ -10,27 +10,11 @@ import Loading from "./components/Loading/Loading";
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 
-/* import { seedProducts } from "./services/upload/upload"; FUNCION DE AGREGADO DE ARRAYS A FIRESTORE DATABASE*/
-
 function App() {
-  /* FUNCION PARA PUSHEAR ARRAYS A MI COLECCION DE FIRESTORE */
-  /*   useEffect(() => {
-    const uploadProducts = async () => {
-      try {
-        console.log("Cargando productos a Firestore...");
-        await seedProducts();
-        console.log("Productos cargados exitosamente.");
-      } catch (error) {
-        console.error("Error al cargar productos:", error);
-      }
-    };
-    uploadProducts();
-  }, []); */
 
   return (
     <CartProvider>
       <BrowserRouter>
-
         <div className="d-flex flex-column min-vh-100">
           <NavBar title="Guarida del HardWare" />
           <main className="flex-grow-1">
@@ -52,7 +36,6 @@ function App() {
           </main>
           <Footer />
         </div>
-
         <ToastContainer />
       </BrowserRouter>
     </CartProvider>

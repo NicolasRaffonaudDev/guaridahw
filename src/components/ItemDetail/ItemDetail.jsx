@@ -21,14 +21,14 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
   };
 
   return (
-    <div className="container d-flex justify-content-center text-center p-5">
-      <div key={id} className="card align-items-center text-center p-3 my-3" style={{ width: 600, height: 850 }}>
-        <div className="card-body fw-bold mt-5">
-          <ProductCard product={{ id, name, price, img, description }} />
-
+    <div className="container d-flex justify-content-center text-center mb-5">
+      <div key={id} className="card p-3" style={{ maxWidth: "800px" }}>
+        <div className="card-body">
+          <div className="card-img d-flex justify-content-center">
+            <ProductCard product={{ id, name, price, img, description }} />
+          </div>
           <h3 className="card-text text-dark">Quedan: {stock} unidades disponibles!</h3>
           <ItemCount stock={stock} onCountChange={setCount} initial={1}/>
-          {/* Indicador del carrito */}
           <div className="d-flex align-items-center justify-content-center gap-1 mt-2">
             <FaShoppingCart size={24} className="text-warning" />
             <span className="badge bg-danger rounded-pill">{cartCount}</span>
