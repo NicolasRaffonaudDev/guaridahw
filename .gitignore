@@ -1,3 +1,6 @@
+src/scripts/serviceAccountKey.json
+# .gitignore
+
 # Logs
 logs
 *.log
