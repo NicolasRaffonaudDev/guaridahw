@@ -1,3 +1,6 @@
+#Dependencies & tools
+src/scripts/serviceAccountKey.json
+
 # Logs
 logs
 *.log
