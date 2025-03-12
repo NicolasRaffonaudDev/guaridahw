@@ -1,14 +1,7 @@
-// scripts/seedProducts.js
-const admin = require('firebase-admin');
-const serviceAccount = require('./serviceAccountKey.json');
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase";
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
 
-const db = admin.firestore();
-
-// Tu array de productos
 const products = [
     { name: "Intel Core i5-12400", price: 149899, category: "processor", img: "https://pcboost.co.uk/wp-content/uploads/2022/08/1.jpg", stock: 120, description: "Procesador Intel Core i5-12400 de 6 núcleos." },
     { name: "NVIDIA GeForce RTX 3060", price: 419899, category: "graphics_card", img: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6439/6439402cv1d.jpg", stock: 50, description: "Placa de Video NVIDIA GeForce RTX 3060 con 12GB de VRAM." },
@@ -112,33 +105,44 @@ const products = [
     { name: "Acer Predator XB273U", price: 879699, category: "monitor", img: "https://lcdn.mediagalaxy.ro/resize/media/catalog/product/x/b/2bd48d28d1c32adea0e55139a4e6434a/xb273u_v3_3_805b2d22.jpg", stock: 5, description: "Monitor Acer Predator XB273U, 27' con 144Hz." }
 ];
 
-async function seedProducts() {
-    const batch = db.batch();
-    const productsRef = db.collection('products');
-  
+export const seedProducts = async () => {
+    const collectionRef = collection(db, "products");
+
     for (const product of products) {
-      // Verificar si el producto ya existe por nombre (server-side)
-      const snapshot = await productsRef
-        .where("name", "==", product.name)
-        .limit(1)
-        .get();
-  
-      if (snapshot.empty) {
-        // Crear documento con ID autogenerado
-        const docRef = productsRef.doc(); // ← ID autogenerado aquí
-        batch.set(docRef, {
-          ...product,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          lastUpdated: admin.firestore.FieldValue.serverTimestamp()
-        });
-        console.log(`🔼 Producto añadido: ${product.name}`);
-      } else {
-        console.log(`⏩ Producto existente: ${product.name}`);
-      }
+        // Verificar si el producto ya existe en la base de datos
+        const q = query(collectionRef, where("name", "==", product.name)); // Usamos "name" como campo único
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            // Si no existe, agregamos el producto
+            try {
+                const docRef = await addDoc(collectionRef, product);
+                console.log("Producto añadido con ID:", docRef.id);
+            } catch (error) {
+                console.error("Error añadiendo el producto:", error);
+            }
+        } else {
+            console.log(`Producto "${product.name}" ya existe en Firestore, no se sube nuevamente.`);
+        }
     }
-  
-    await batch.commit();
-    console.log("✅ Todos los productos procesados");
-  }
-  
-  seedProducts().catch(console.error);
+
+    console.log("Todos los productos han sido revisados y cargados.");
+};
+
+// FUNCION PARA SUBIRLO DESDE LA LOGICA DE APP
+
+import { seedProducts } from "../../productList/productList";
+
+    /* FUNCION PARA PUSHEAR ARRAYS A MI COLECCION DE FIRESTORE */
+   useEffect(() => {
+      const uploadProducts = async () => {
+        try {
+          console.log("Cargando productos a Firestore...");
+          await seedProducts();
+          console.log("Productos cargados exitosamente.");
+        } catch (error) {
+          console.error("Error al cargar productos:", error);
+        }
+      };
+      uploadProducts();
+    }, []);
