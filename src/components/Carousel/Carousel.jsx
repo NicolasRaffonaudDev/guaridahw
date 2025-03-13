@@ -16,7 +16,7 @@ function Carousel() {
           <div className="carousel-item active" data-bs-interval="3000">
             <picture>
               <source srcSet={slide1} type="image/webp" />
-              <img src={slide1} className="d-block w-100" alt="slide1" loading="lazy" />
+              <img src={slide1} className="img-fluid d-block w-100" alt="slide1" loading="lazy" />
             </picture>
             <div className="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
@@ -26,7 +26,7 @@ function Carousel() {
           <div className="carousel-item" data-bs-interval="3000">
             <picture>
               <source srcSet={slide2} type="image/webp" />
-              <img src={slide2} className="d-block w-100" alt="slide2" />
+              <img src={slide2} className="img-fluid d-block w-100" alt="slide2" loading="lazy" />
             </picture>
             <div className="carousel-caption d-none d-md-block">
               <h5>Second slide label</h5>
@@ -36,7 +36,7 @@ function Carousel() {
           <div className="carousel-item" data-bs-interval="3000">
             <picture>
               <source srcSet={slide3} type="image/webp" />
-              <img src={slide3} className="d-block w-100" alt="slide3" />
+              <img src={slide3} className="img-fluid d-block w-100" alt="slide3" loading="lazy" />
             </picture>
             <div className="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>

@@ -7,7 +7,7 @@ const CartItem = ({ id, name, quantity, price, stock, img, updateCartItem }) => 
     <div className="card mb-3 shadow-sm">
       <div className="row g-0">
         <div className="col-md-2 d-flex align-items-center justify-content-center">
-          <img src={img} alt={name} className="img-fluid rounded-start" />
+          <img src={img} width={170} height={170} alt={name} loading="lazy" className="img-fluid rounded-start" />
         </div>
         <div className="col-md-10">
           <div className="card-body d-flex align-items-center justify-content-between">
