@@ -1,7 +1,7 @@
 import "./Carousel.css";
-import slide1 from "../../assets/images/pcgamingprueba5.jpg";
-import slide2 from "../../assets/images/pcgamingprueba1.jpg";
-import slide3 from "../../assets/images/pcgamingprueba3.jpg";
+import slide1 from "../../assets/images/pcgamingprueba5.webp";
+import slide2 from "../../assets/images/pcgamingprueba1.webp";
+import slide3 from "../../assets/images/pcgamingprueba3.webp";
 
 function Carousel() {
   return (
