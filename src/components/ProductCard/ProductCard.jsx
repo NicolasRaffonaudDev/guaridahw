@@ -15,7 +15,8 @@ const ProductCard = ({ product }) => {
         sizes="(max-width: 768px) 400px 800px"
         effect="blur" 
         className="card-img-top" 
-        style={{ width: 200, height: 200 }} 
+        width={250}
+        height={250}
         placeholderSrc="/placeholder.jpg" 
         alt={product.name} 
         />

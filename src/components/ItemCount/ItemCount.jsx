@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const ItemCount = ({ stock, onCountChange }) => {
-    const [count, setCount] = useState(1);
+const ItemCount = ({ stock, initial = 1, onCountChange }) => {
+    const [count, setCount] = useState(initial);
 
     // Sincronizar count cuando el stock cambie
     useEffect(() => {
