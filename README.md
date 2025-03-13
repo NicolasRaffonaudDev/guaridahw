@@ -1,4 +1,4 @@
-# 🛒 Tech Haven - E-commerce de Hardware 
+# 🛒 Guarida Hw - E-commerce de Hardware 
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue)](https://react.dev/)
 [![Firebase](https://img.shields.io/badge/Firebase-9.22.0-orange)](https://firebase.google.com/)
