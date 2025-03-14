@@ -4,7 +4,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import ItemCount from "../ItemCount/ItemCount";
 import ProductCard from "../ProductCard/ProductCard";
-import { showErrorToast } from "../../utils/notifications";
 
 const ItemDetail = ({ id, name, price, img, description, stock }) => {
   const [count, setCount] = useState(1);
