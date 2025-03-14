@@ -1,0 +1,11 @@
+[
+    { "id": 1, "name": "processor", "img": "../../public/categories/procesadores-logo.webp", "displayName": "Procesadores" },
+    { "id": 2, "name": "motherboard", "img": "../../public/categories/placaMadre-logo.webp", "displayName": "Placas Madre" },
+    { "id": 3, "name": "graphics_card", "img": "../../public/categories/gpu-logo-1.webp", "displayName": "Placas de Video" },
+    { "id": 4, "name": "memory", "img": "../../public/categories/ram-logo-1.webp", "displayName": "Memorias RAM" },
+    { "id": 5, "name": "storage", "img": "../../public/categories/ssd-logo.webp", "displayName": "Almacenamiento" },
+    { "id": 6, "name": "monitor", "img": "../../public/categories/monitor-logo.webp", "displayName": "Monitores" },
+    { "id": 7, "name": "power_supply", "img": "../../public/categories/icon-power-supply-2.webp", "displayName": "Fuentes de Poder" },
+    { "id": 8, "name": "cooling", "img": "../../public/categories/icon-cooling.webp", "displayName": "Refrigeración" },
+    { "id": 9, "name": "case", "img": "../../public/categories/icon-case-2.jpg", "displayName": "Gabinetes" }
+  ]
