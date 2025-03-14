@@ -5,8 +5,8 @@ const ItemList = ({ products }) => {
 
   return (
     <div>
-      <CategoriesList />
-      <div className="container d-flex flex-wrap justify-content-between">
+      
+      <div className="container d-flex flex-wrap col-12">
         {products.map((product) =>
           <ProductCard product={product} key={product.id} />
         )}
