@@ -1,46 +1,28 @@
-import { Link } from "react-router-dom"
-import imgProcessor from "../../assets/images/procesadores-logo.webp";
-import imgMotherboard from "../../assets/images/placaMadre-logo.webp";
-import imgGraphicsCard from "../../assets/images/gpu-logo-1.webp";
-import imgMemory from "../../assets/images/ram-logo-1.webp";
-import imgStorage from "../../assets/images/ssd-logo.webp";
-import imgMonitor from "../../assets/images/monitor-logo.webp";
-import imgPowerSupply from "../../assets/images/icon-power-supply-2.webp";
-import imgCooling from "../../assets/images/icon-cooling.webp";
-import imgCase from "../../assets/images/icon-case-2.jpg";
-
-const categories = [
-  { id: 1, name: 'processor', img: imgProcessor },
-  { id: 2, name: 'motherboard', img: imgMotherboard },
-  { id: 3, name: 'graphics_card', img: imgGraphicsCard },
-  { id: 4, name: 'memory', img: imgMemory },
-  { id: 5, name: 'storage', img: imgStorage },
-  { id: 6, name: 'monitor', img: imgMonitor },
-  { id: 7, name: 'power_supply', img: imgPowerSupply },
-  { id: 8, name: 'cooling', img: imgCooling },
-  { id: 9, name: 'case', img: imgCase },
-]
+import { Link } from "react-router-dom";
+import categoriesData from "../../data/categories.json";
+import "./CategoriesList.css"
 
 function CategoriesList() {
   return (
     <>
       <div className="container-fluid my-5">
         <div className="row justify-content-center">
-          {categories.map((category) => (
-            <div className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3" style={{ width: '150px' }} key={category.id}>
-              <div className="card text-center">
-                <Link to={`/category/${category.name}`}>
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    className="card-img-center img-fluid"
-                    src={category.img}
-                    alt={category.name}
-                    style={{ height: '80px', objectFit: 'contain' }}
-                  />
+          {categoriesData.map(({id, name, img, displayName }) => (
+            <div className="my-3 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center" key={id} >
+              <div className="card h-100 shadow-lg text-center" style={{minWidth:250 ,maxWidth: 400}}>
+                <Link to={`/category/${name}`} className="text-decoration-none" aria-label={`Ver productos de ${displayName}`} >
+                  <div className="card-img-top p-2">
+                    <img
+                      src={img}
+                      alt={displayName}
+                      className="img-fluid"
+                      style={{ width:"100%", height: '65px', objectFit: 'contain' }}
+                      loading="lazy"
+                    />
+                  </div>
                 </Link>
                 <div className="card-body">
-                  <span className="card-title" style={{ fontSize: '0.7rem' }}>{category.name}</span>
+                  <span className="card-title fs-6 fw-bold text-dark">{displayName}</span>
                 </div>
               </div>
             </div>

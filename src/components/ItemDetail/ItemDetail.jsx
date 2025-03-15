@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import ItemCount from "../ItemCount/ItemCount";
 import ProductCard from "../ProductCard/ProductCard";
+import Product from "../Product/Product";
 
 const ItemDetail = ({ id, name, price, img, description, stock }) => {
   const [count, setCount] = useState(1);
@@ -21,10 +22,10 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
 
   return (
     <div className="container d-flex justify-content-center text-center mb-5">
-      <div key={id} className="card p-3" style={{ maxWidth: "800px" }}>
+      <div key={id} className="card p-3 shadow-lg" style={{ maxWidth: "800px" }}>
         <div className="card-body">
           <div className="card-img d-flex justify-content-center">
-            <ProductCard product={{ id, name, price, img, description }} />
+            <Product data={{ id, name, price, img, description }} />
           </div>
           <h3 className="card-text text-dark">Quedan: {stock} unidades disponibles!</h3>
           <ItemCount stock={stock} onCountChange={setCount} initial={1}/>

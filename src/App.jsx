@@ -1,6 +1,6 @@
 // App.js
 import { Routes, BrowserRouter, Route } from "react-router-dom";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { CartProvider } from "./context/CartContext";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
@@ -16,8 +16,8 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <div className="d-flex flex-column min-vh-100">
-          <NavBar title="Guarida del HardWare" />
-          <main className="flex-grow-1">
+          <NavBar />
+          <main className="">
             <Routes>
               {routes.map((route) => (
                 <Route

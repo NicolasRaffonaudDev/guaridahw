@@ -1,4 +1,4 @@
-function Product(data) {
+function Product({data}) {
   return (
     <div className="text-center p-3">
       <h2 className="fw-bold m-2 p-3">{data.name}</h2>
