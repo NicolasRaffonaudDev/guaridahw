@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark opacity-75 text-light py-5">
+    <footer className="bg-dark opacity-100 text-light py-5">
       <div className="container">
         {/* Primera fila */}
         <div className="row justify-content-between">

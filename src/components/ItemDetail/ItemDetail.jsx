@@ -21,8 +21,8 @@ const ItemDetail = ({ id, name, price, img, description, stock }) => {
   };
 
   return (
-    <div className="container d-flex justify-content-center text-center mb-5">
-      <div key={id} className="card p-3 shadow-lg" style={{ maxWidth: "800px" }}>
+    <div className="container d-flex justify-content-center text-center my-5">
+      <div key={id} className="card p-3 shadow-lg" style={{ maxWidth: "550px" }}>
         <div className="card-body">
           <div className="card-img d-flex justify-content-center">
             <Product data={{ id, name, price, img, description }} />

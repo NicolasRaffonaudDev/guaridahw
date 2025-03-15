@@ -26,7 +26,7 @@ function Cart() {
                 data-tooltip-id="cart-tooltip" // ID para el tooltip
                 data-tooltip-content="Ver carrito" // Texto del tooltip
             >
-                <FaShoppingCart size={24} className={`text-warning ${animate ? "cart-icon-animate" : ""}`} />
+                <FaShoppingCart size={24} className={`text-white ${animate ? "cart-icon-animate" : ""}`} />
                 {cartCount > 0 && (
                     <span className="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {cartCount}
