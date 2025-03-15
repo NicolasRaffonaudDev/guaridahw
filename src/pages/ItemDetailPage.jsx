@@ -41,8 +41,8 @@ const ItemDetailPage = () => {
 
   return (
     <div>
-      <CategoriesList />
       <ItemDetail {...product} />
+      <CategoriesList />
     </div>
   )
 }
