@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Footer.css"
 
 const Footer = () => {
   return (
@@ -43,7 +44,7 @@ const Footer = () => {
                   placeholder="Ingresa tu email"
                 />
               </div>
-              <button type="submit" className="btn btn-primary decorative">Suscribirse</button>
+              <button type="submit" className="cyber-btn cyber-btn--pink"><span className="cyber-btn__glow">Suscribirse</span></button>
             </form>
             <div>
               <a href="https://www.facebook.com" className="text-light me-3">

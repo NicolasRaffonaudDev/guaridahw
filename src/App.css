@@ -1,13 +1,37 @@
 body {
-    background-image: url(../src/assets/images/cyberpunk.jpg);
-    background-size: cover; /* La imagen cubre todo el área visible */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-attachment: fixed; /* Fija la imagen al viewport */
-    background-position: center; /* Centra la imagen */
-    font-family: 'Roboto', sans-serif;
+  background: 
+    /* Capa 1: Fondo oscuro semi-transparente */
+    linear-gradient(
+      160deg,
+      rgba(18, 142, 224, 0.85),  /* Reduje la opacidad para ver la imagen */
+      rgba(219, 53, 197, 0.9)
+    ),
+    /* Capa 2: Líneas de escaneo */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 1px,
+      #00ff88 3px,
+      #ff0099 4px
+    ),
+    /* Capa 3: Imagen de fondo */
+    url('./assets/images/cyberpunk.jpg');  /* Usa ruta absoluta desde public/ */
+
+  background-size: 
+    cover,    /* Para el gradiente oscuro */
+    40px 40px, /* Para las líneas de escaneo */
+    cover;     /* Para la imagen */
+
+  background-attachment: fixed;
+  min-height: 100vh;
+  animation: scanLines 1s linear infinite;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, span {
+  font-family: 'Orbitron', sans-serif;
+}
+
+h2, h3, h4, h5, h5, p {
   font-family: 'Poppins', sans-serif;
 }
 
@@ -21,5 +45,20 @@ h1, h2, h3, h4, h5, h6 {
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes scanLines {
+    from {
+      background-position: 
+        0 0,     /* Gradiente oscuro estático */
+        0 0,     /* Líneas de escaneo - posición inicial */
+        0 0;     /* Imagen estática */
+    }
+    to {
+      background-position: 
+        0 0,
+        0 20px,  /* Mueve solo las líneas de escaneo */
+        0 0;
     }
   }
