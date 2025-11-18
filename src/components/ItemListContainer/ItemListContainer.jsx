@@ -12,10 +12,10 @@ const ItemListContainer = () => {
 
   if (loading) {
     return (
-      <div className="d-flex flex-column align-items-center justify-content-center vh-100 text-center bg-light">
-        <FaSpinner className="text-primary mb-4" style={{ fontSize: "4rem", animation: "spin 1s linear infinite" }} />
-        <h1 className="text-primary">Cargando productos...</h1>
-        <p className="text-muted mt-3">
+      <div className="d-flex flex-column align-items-center justify-content-center vh-100 text-center">
+        <FaSpinner className="text-light mb-4" style={{ fontSize: "4rem", animation: "spin 1s linear infinite" }} />
+        <h1 className="text-light">Cargando productos...</h1>
+        <p className="text-light mt-3">
           Por favor, espera un momento mientras preparamos los mejores productos para ti.
         </p>
       </div>
